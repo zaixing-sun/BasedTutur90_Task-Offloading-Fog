@@ -70,7 +70,7 @@ class TaskFormer(nn.Module):
         x = nodes + self.pos_nodes_embed 
         
         if (use_task and not self.mode == "node") or self.mode == "task":
-            x = x + task.unsqueeze(0).repeat(1, nodes.size(1), 1)
+            x = x + task.unsqueeze(1).repeat(1, nodes.size(1), 1)
         
         
         x = self.trasformer_encoder(x, None)

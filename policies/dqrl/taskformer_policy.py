@@ -11,6 +11,9 @@ import numpy as np
 from core.env import Env
 from core.task import Task
 
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")   
+dtype = torch.float32
+
 class TaskFormerPolicy:
     def __init__(self, env, config):
         """
@@ -48,7 +51,7 @@ class TaskFormerPolicy:
         mode = config["model"]["mode"]
         
         
-        self.model = TaskFormer(d_in=self.d_obs, d_pos=self.n_observations, d_task=4, d_model=d_model, d_ff=d_model*mlp_ratio, n_heads=n_heads, n_layers=n_layers, dropout=dropout, mode=mode)
+        self.model = TaskFormer(d_in=self.d_obs, d_pos=self.n_observations, d_task=4, d_model=d_model, d_ff=d_model*mlp_ratio, n_heads=n_heads, n_layers=n_layers, dropout=dropout, mode=mode).to(device)
         self.optimizer = optim.Adam(self.model.parameters(), lr=self.lr)
         self.criterion = nn.MSELoss()
 
@@ -99,8 +102,8 @@ class TaskFormerPolicy:
         """
         state = self._make_observation(env, task)
         obs, task_obs = state
-        obs_tensor = torch.tensor(obs, dtype=torch.float32).unsqueeze(0)
-        task_tensor = torch.tensor(task_obs, dtype=torch.float32).unsqueeze(0)
+        obs_tensor = torch.tensor(obs, dtype=dtype).unsqueeze(0).to(device)
+        task_tensor = torch.tensor(task_obs, dtype=dtype).unsqueeze(0).to(device)
 
         rand = random.random()
         
@@ -118,44 +121,65 @@ class TaskFormerPolicy:
 
         # Return both the chosen action and the current state.
         return action, state
-
+    
     def store_transition(self, state, action, reward, next_state, done):
         """
         Stores a transition in the replay buffer.
         """
         self.replay_buffer.append((state, action, reward, next_state, done))
         
+
+
     def update(self):
         """
-        Performs an update over all stored transitions and clears the buffer.
+        Performs an update over all stored transitions using batched operations,
+        moves tensors to the appropriate device and dtype, and clears the replay buffer.
         """
         if not self.replay_buffer:
             return 0.0
+
+        # Determine device and dtype
+        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        dtype = torch.float16 if torch.cuda.is_available() else torch.float32  # Use FP16 for GPUs, FP32 otherwise
+
+        # Ensure model is on the correct device and dtype
+        self.model.to(device).to(dtype)
+
+        # Unpack transitions
+        states, actions, rewards, next_states, dones = zip(*self.replay_buffer)
+        obs_batch, task_obs_batch = zip(*states)
+        next_obs_batch, next_task_obs_batch = zip(*next_states)
+
+        # Convert lists to batched tensors and move them to the device with the appropriate dtype
+        obs_tensor = torch.tensor(np.array(obs_batch), dtype=dtype, device=device)
+        task_tensor = torch.tensor(np.array(task_obs_batch), dtype=dtype, device=device)
+        next_obs_tensor = torch.tensor(np.array(next_obs_batch), dtype=dtype, device=device)
+        next_task_tensor = torch.tensor(np.array(next_task_obs_batch), dtype=dtype, device=device)
+
+        actions_tensor = torch.tensor(np.array(actions), dtype=torch.int64).to(device).unsqueeze(-1)  # Actions remain long dtype
+        rewards_tensor = torch.tensor(rewards, dtype=dtype).to(device)
+        dones_tensor = torch.tensor(dones, dtype=dtype).to(device)
         
-        loss_total = 0.0
+
         self.optimizer.zero_grad()
-        for state, action, reward, next_state, done in self.replay_buffer:
-            obs, task_obs = state
-            next_obs, next_task_obs = next_state
-            obs_tensor = torch.tensor(obs, dtype=torch.float32).unsqueeze(0)
-            next_obs_tensor = torch.tensor(next_obs, dtype=torch.float32).unsqueeze(0)
-            task_tensor = torch.tensor(task_obs, dtype=torch.float32).unsqueeze(0)
-            next_task_tensor = torch.tensor(next_task_obs, dtype=torch.float32).unsqueeze(0)
-            reward_tensor = torch.tensor(reward, dtype=torch.float32)
-            done_tensor = torch.tensor(done, dtype=torch.float32)
-            
-            q_values = self.model(obs_tensor, task_tensor).squeeze()
-            predicted_q = q_values[action]
-            with torch.no_grad():
-                next_q_values = self.model(next_obs_tensor, next_task_tensor)
-                max_next_q = torch.max(next_q_values)
-                if self.gamma == 0:
-                    target_q = reward_tensor
-                else:
-                    target_q = reward_tensor + (1 - done_tensor) * self.gamma * max_next_q
-            loss = self.criterion(predicted_q, target_q)
-            loss_total += loss
-        loss_total.backward()
+
+        # Compute Q-values for the current states
+        q_values = self.model(obs_tensor, task_tensor).squeeze()  # Shape: [batch_size, num_actions]
+
+        predicted_q = q_values.gather(1, actions_tensor).squeeze()
+
+
+        # Compute target Q-values from next states
+        with torch.no_grad():
+            next_q_values = self.model(next_obs_tensor, next_task_tensor).squeeze()  # Shape: [batch_size, num_actions]
+            max_next_q, _ = torch.max(next_q_values, dim=1)
+            target_q = rewards_tensor if self.gamma == 0 else rewards_tensor + (1 - dones_tensor) * self.gamma * max_next_q
+
+        # Compute loss over the batch
+        loss = self.criterion(predicted_q, target_q)
+        loss.backward()
         self.optimizer.step()
+
         self.replay_buffer.clear()
-        return loss_total.item()
+        return loss.item()
+

@@ -7,6 +7,8 @@ from torch.distributions import Categorical  # (optional for epsilon random sele
 from core.env import Env
 from core.task import Task
 
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")   
+
 class MLPPolicy:
     def __init__(self, env, config):
         """
@@ -42,7 +44,7 @@ class MLPPolicy:
             nn.ReLU(),
             *[nn.Linear(hidden_size, hidden_size), nn.ReLU()] * (n_layers - 2),
             nn.Linear(hidden_size, self.num_actions),
-        )
+        ).to(device)
         self.optimizer = optim.Adam(self.model.parameters(), lr=lr)
         self.criterion = nn.MSELoss()
 
@@ -81,7 +83,7 @@ class MLPPolicy:
         Chooses an action using an ε-greedy strategy and records the current state.
         """
         state = self._make_observation(env, task)
-        state_tensor = torch.tensor(state, dtype=torch.float32).unsqueeze(0)
+        state_tensor = torch.tensor(state, dtype=torch.float32).unsqueeze(0).to(device)
         
         if random.random() < self.epsilon and train:
             action = random.randrange(self.num_actions)
@@ -101,31 +103,39 @@ class MLPPolicy:
         
     def update(self):
         """
-        Performs an update over all stored transitions and clears the buffer.
+        Performs an update over all stored transitions using batched operations
+        and clears the replay buffer.
         """
         if not self.replay_buffer:
             return 0.0
+
+        # Unpack transitions and convert to batched tensors.
+        states, actions, rewards, next_states, dones = zip(*self.replay_buffer)
+        states = torch.tensor(states, dtype=torch.float32).to(device)
+        rewards = torch.tensor(rewards, dtype=torch.float32).to(device)
+        next_states = torch.tensor(next_states, dtype=torch.float32).to(device)
+        dones = torch.tensor(dones, dtype=torch.float32).to(device)
         
-        loss_total = 0.0
+        actions_tensor = torch.tensor(actions, dtype=torch.int64).to(device).unsqueeze(1)
+
         self.optimizer.zero_grad()
-        for state, action, reward, next_state, done in self.replay_buffer:
-            state_tensor = torch.tensor(state, dtype=torch.float32).unsqueeze(0)
-            next_state_tensor = torch.tensor(next_state, dtype=torch.float32).unsqueeze(0)
-            reward_tensor = torch.tensor(reward, dtype=torch.float32)
-            done_tensor = torch.tensor(done, dtype=torch.float32)
-            
-            q_values = self.model(state_tensor)
-            predicted_q = q_values[0, action]
-            with torch.no_grad():
-                next_q_values = self.model(next_state_tensor)
-                max_next_q = torch.max(next_q_values)
-                if self.gamma == 0:
-                    target_q = reward_tensor
-                else:
-                    target_q = reward_tensor + (1 - done_tensor) * self.gamma * max_next_q
-            loss = self.criterion(predicted_q, target_q)
-            loss_total += loss
-        loss_total.backward()
+
+        # Compute Q-values for current states and gather the Q-value for the taken action.
+        q_values = self.model(states)
+        predicted_q = q_values.gather(1, actions_tensor).squeeze()
+
+        # Compute target Q-values using next states.
+        with torch.no_grad():
+            next_q_values = self.model(next_states)
+            max_next_q, _ = torch.max(next_q_values, dim=1)
+            # If gamma is zero, the target is just the immediate reward.
+            target_q = rewards if self.gamma == 0 else rewards + (1 - dones) * self.gamma * max_next_q
+
+        # Compute loss and perform backpropagation.
+        loss = self.criterion(predicted_q, target_q)
+        loss.backward()
         self.optimizer.step()
+        
         self.replay_buffer.clear()
-        return loss_total.item()
+        return loss.item()
+
