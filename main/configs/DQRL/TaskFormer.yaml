@@ -15,6 +15,7 @@ training:
   epsilon_decay: 0.96
   beta: 0.5
   beta_decay: 0.96
+  lambda: [100000, 1, 0.001]
 
 model:
   d_model: 64
@@ -22,6 +23,6 @@ model:
   n_heads: 4
   mlp_ratio: 4
   dropout: 0.1  
-  mode: "mixed" # "mixed", node, task
+  mode: "node" # "mixed", node, task
 
     

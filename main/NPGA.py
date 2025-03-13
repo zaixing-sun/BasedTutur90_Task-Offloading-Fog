@@ -7,6 +7,7 @@ is for reference only, and contributions are welcome.
 
 import os
 import sys
+from multiprocessing import Pool, cpu_count
 
 current_file_path = os.path.abspath(__file__)
 current_dir = os.path.dirname(current_file_path)
@@ -24,8 +25,7 @@ from core.vis.vis_stats import VisStats
 from core.vis.logger import Logger
 from eval.benchmarks.Pakistan.scenario import Scenario
 from eval.metrics.metrics import SuccessRate, AvgLatency
-from policies.dqrl.mlp_policy import MLPPolicy
-from policies.dqrl.taskformer_policy import TaskFormerPolicy
+from policies.npga.npga_policy import Individual, NPGAPolicy
 
 import numpy as np
 
@@ -37,33 +37,24 @@ def error_handler(error: Exception):
         pass
     else:
         raise
-
-def run_epoch(config, policy, data: pd.DataFrame, train=True, lambda_=(1e6, 1, 0.001
-                                                                       )):
+    
+def evaluate_individual(args):
     """
-    Run one simulation epoch over the provided task data.
-    lambda_ = (fail, time, energy) if time is more important than energy, then lambda_ = (_, 1, 0) and vice versa.
-
-    For each task:
-      - Wait until the task's generation time.
-      - Obtain the current state and select an action via the policy.
-      - Schedule the task for processing.
-      - Once processed, record the next state and compute the reward.
-      - Store the transition for policy training.
-      
-    Every 'batch_size' tasks, update the policy.
+    Evaluate an individual solution.
     """
+    
+    env = create_env(config)
+    
     m1 = SuccessRate()
     m2 = AvgLatency()
+    
+    ind, data, config = args
     
     env = create_env(config)
     
     until = 0
     launched_task_cnt = 0
-    last_task_id = None
-    pbar = tqdm(data.iterrows(), total=len(data))
-    stored_transitions = {}
-    for i, task_info in pbar:
+    for i, task_info in data.iterrows():
         generated_time = task_info['GenerationTime']
         task = Task(task_id=task_info['TaskID'],
                     task_size=task_info['TaskSize'],
@@ -80,17 +71,11 @@ def run_epoch(config, policy, data: pd.DataFrame, train=True, lambda_=(1e6, 1, 0
             
             if env.now >= generated_time:
                 # Get action and current state from the policy.
-                action, state = policy.act(env, task, train=train)
+                action, state = ind.act(env, task)
                 dst_name = env.scenario.node_id2name[action]
                 env.process(task=task, dst_name=dst_name)
                 launched_task_cnt += 1
 
-                # Update previous transition with the new state's observation.
-                if last_task_id is not None and train:
-                    prev_state, prev_action, _ = stored_transitions[last_task_id]
-                    stored_transitions[last_task_id] = (prev_state, prev_action, state)
-                
-                break
             
             until += env.refresh_rate
             
@@ -99,34 +84,6 @@ def run_epoch(config, policy, data: pd.DataFrame, train=True, lambda_=(1e6, 1, 0
             except Exception as e:
                 error_handler(e)
 
-            
-        if train:
-            done = False  # Each task is treated as an individual episode.
-            last_task_id = task.task_id
-            stored_transitions[last_task_id] = (state, action, None)
-            
-            # Process stored transitions if the task has been completed.
-            for task_id, (state, action, next_state) in list(stored_transitions.items()):
-                if task_id in env.logger.task_info:
-                    val = env.logger.task_info[task_id]
-                    if val[0] == 0:
-                        task_trans_time, task_wait_time, task_exe_time = val[2]
-                        total_time = task_trans_time + task_wait_time + task_exe_time
-                        task_trans_energy, task_exe_energy = val[3]
-                        total_energy = task_trans_energy + task_exe_energy
-                        reward = - ((lambda_[1] * total_time) + (lambda_[2] * total_energy))
-                    else:
-                        reward = -lambda_[0]
-                    policy.store_transition(state, action, reward, next_state, done)
-                    del stored_transitions[task_id]
-            # Update the policy every batch_size tasks during training.
-            if (i + 1) % config["training"]["batch_size"] == 0:
-                r1 = m1.eval(env.logger)
-                r2 = m2.eval(env.logger)
-                e = env.avg_node_power()
-                pbar.set_postfix({"SR": f"{r1:.3f}", "L": f"{r2:.3f}", "E": f"{e:.3f}"})
-                policy.update()
-                
 
 
     # Continue simulation until all tasks are processed.
@@ -136,8 +93,29 @@ def run_epoch(config, policy, data: pd.DataFrame, train=True, lambda_=(1e6, 1, 0
             env.run(until=until)
         except Exception as e:
             error_handler(e)
+            
+    success_rate = m1.eval(env.logger)
+    avg_latency = m2.eval(env.logger)
+    avg_power = env.avg_node_power()
     
-    return env
+    return success_rate, avg_latency, avg_power
+
+def run_epoch(config, policy, data: pd.DataFrame, train=True):
+    
+    
+    pool = Pool(processes=cpu_count())
+    args = [(ind,  data, config) for ind in policy.population]
+    fitness = pool.map(evaluate_individual, args)
+    
+    SR, L, E = policy.best_individual(fitness)
+    
+    pool.close()
+    pool.join()
+    
+    policy.update(fitness)
+
+    
+    return SR, L, E
 
 
 def create_env(config):
@@ -153,7 +131,7 @@ def create_env(config):
 
 def main():
 
-    config_path = "main/configs/DQRL/TaskFormer.yaml"
+    config_path = "main/configs/NPGA/NPGA.yaml"
     
     with open(config_path, 'r') as file:
         config = yaml.safe_load(file)
@@ -167,12 +145,7 @@ def main():
     train_data = pd.read_csv(f"eval/benchmarks/Pakistan/data/{config['env']['flag']}/trainset.csv")
     test_data = pd.read_csv(f"eval/benchmarks/Pakistan/data/{config['env']['flag']}/testset.csv")
 
-    if config["policy"] == "MLP":
-        policy = MLPPolicy(env=env, config=config)
-    elif config["policy"] == "TaskFormer":
-        policy = TaskFormerPolicy(env=env, config=config)
-    
-    
+    policy = NPGAPolicy(env, config)
     
     m1 = SuccessRate()
     m2 = AvgLatency()
@@ -186,12 +159,11 @@ def main():
         
         logger.update_mode('Training')
         
-        env = run_epoch(config, policy, train_data, train=True, lambda_=config["training"]["lambda"])
-
+        (SR, L, E) = run_epoch(config, policy, train_data, train=True)
         
-        logger.update_metric('SuccessRate', m1.eval(env.logger))
-        logger.update_metric('AvgLatency', m2.eval(env.logger))
-        logger.update_metric("AvgPower", env.avg_node_power())
+        logger.update_metric('SuccessRate',SR)
+        logger.update_metric('AvgLatency', L)
+        logger.update_metric("AvgPower", L)
         
         env.close()
         
@@ -206,8 +178,7 @@ def main():
         logger.update_metric("AvgPower", env.avg_node_power())
         
         env.close()
-        
-        policy.epsilon *= config["training"]["epsilon_decay"]
+
 
     logger.plot()
     logger.save_csv()

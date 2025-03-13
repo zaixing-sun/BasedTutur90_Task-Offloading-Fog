@@ -92,9 +92,7 @@ class Logger:
                 else:   
                     header += f"{key}: {value}\n"
         header += "\n"
-        
-        for key, value in self.training_config.items():
-            header += f"{key}: {value}\n"
+
         header += "====================\n\n"
         self.log_file.write(header)
         self.log_file.flush()

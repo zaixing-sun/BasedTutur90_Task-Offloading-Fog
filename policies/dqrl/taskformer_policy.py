@@ -138,13 +138,6 @@ class TaskFormerPolicy:
         if not self.replay_buffer:
             return 0.0
 
-        # Determine device and dtype
-        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-        dtype = torch.float16 if torch.cuda.is_available() else torch.float32  # Use FP16 for GPUs, FP32 otherwise
-
-        # Ensure model is on the correct device and dtype
-        self.model.to(device).to(dtype)
-
         # Unpack transitions
         states, actions, rewards, next_states, dones = zip(*self.replay_buffer)
         obs_batch, task_obs_batch = zip(*states)

@@ -17,6 +17,7 @@ training:
 model:
   d_model: 128
   n_layers: 3
-  obs_type: ["cpu", "bw", "buffer"]
+  obs_type: ["cpu"]
+  # obs_type: ["cpu", "bw", "buffer"]
 
     
