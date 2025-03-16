@@ -1,4 +1,4 @@
-policy: "NPGA"
+policy: "NSGA2"
 
 env:
   dataset: "Pakistan"
