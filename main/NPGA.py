@@ -1,8 +1,6 @@
 """
-This script demonstrates how to run the DQRLPolicy.
+This script demonstrates how to run the NPGAPolicy.
 
-Oh, wait a moment. It seems that extra effort is required to make this method work. The current version 
-is for reference only, and contributions are welcome.
 """
 
 import os
@@ -26,6 +24,7 @@ from core.vis.logger import Logger
 from eval.benchmarks.Pakistan.scenario import Scenario
 from eval.metrics.metrics import SuccessRate, AvgLatency
 from policies.npga.npga_policy import Individual, NPGAPolicy
+from policies.npga.nsga_policy import NSGA2Policy
 
 import numpy as np
 
@@ -43,18 +42,19 @@ def evaluate_individual(args):
     Evaluate an individual solution.
     """
     
-    env = create_env(config)
-    
     m1 = SuccessRate()
     m2 = AvgLatency()
     
-    ind, data, config = args
+    policy, data, config = args
     
     env = create_env(config)
     
     until = 0
     launched_task_cnt = 0
-    for i, task_info in data.iterrows():
+    
+    iter_data = data.iterrows()
+    
+    for i, task_info in iter_data:
         generated_time = task_info['GenerationTime']
         task = Task(task_id=task_info['TaskID'],
                     task_size=task_info['TaskSize'],
@@ -64,21 +64,20 @@ def evaluate_individual(args):
                     src_name='e0',
                     task_name=task_info['TaskName'])
 
-        # Wait until the simulation reaches the task's generation time.
         while True:
+            # Catch completed task information.
             while env.done_task_info:
                 item = env.done_task_info.pop(0)
             
             if env.now >= generated_time:
-                # Get action and current state from the policy.
-                action, state = ind.act(env, task)
-                dst_name = env.scenario.node_id2name[action]
+                dst_id, state = policy.act(env, task)  # offloading decision
+                dst_name = env.scenario.node_id2name[dst_id]
                 env.process(task=task, dst_name=dst_name)
                 launched_task_cnt += 1
+                break
 
-            
+            # Execute the simulation with error handler.
             until += env.refresh_rate
-            
             try:
                 env.run(until=until)
             except Exception as e:
@@ -86,13 +85,13 @@ def evaluate_individual(args):
 
 
 
-    # Continue simulation until all tasks are processed.
+    # Continue the simulation until the last task successes/fails.
     while env.task_count < launched_task_cnt:
         until += env.refresh_rate
         try:
             env.run(until=until)
         except Exception as e:
-            error_handler(e)
+            pass
             
     success_rate = m1.eval(env.logger)
     avg_latency = m2.eval(env.logger)
@@ -104,15 +103,24 @@ def run_epoch(config, policy, data: pd.DataFrame, train=True):
     
     
     pool = Pool(processes=cpu_count())
-    args = [(ind,  data, config) for ind in policy.population]
-    fitness = pool.map(evaluate_individual, args)
+    args = [(ind,  data, config) for ind in policy.individuals()]
     
-    SR, L, E = policy.best_individual(fitness)
+    fitness = pool.map(evaluate_individual, args,)
     
     pool.close()
     pool.join()
     
-    policy.update(fitness)
+    fitness = []
+    
+    for i in range(len(args)):
+        fitness.append(evaluate_individual(args[i]))
+        print(fitness[-1])
+
+    
+    SR, L, E = policy.best_individual(fitness)
+
+    if train:
+        policy.update(fitness)
 
     
     return SR, L, E
@@ -131,7 +139,8 @@ def create_env(config):
 
 def main():
 
-    config_path = "main/configs/NPGA/NPGA.yaml"
+    config_path = "main/configs/GA/NSGA2.yaml"
+    
     
     with open(config_path, 'r') as file:
         config = yaml.safe_load(file)
@@ -145,7 +154,10 @@ def main():
     train_data = pd.read_csv(f"eval/benchmarks/Pakistan/data/{config['env']['flag']}/trainset.csv")
     test_data = pd.read_csv(f"eval/benchmarks/Pakistan/data/{config['env']['flag']}/testset.csv")
 
-    policy = NPGAPolicy(env, config)
+    if config["policy"] == "NPGA":
+        policy = NPGAPolicy(env, config)
+    if config["policy"] == "NSGA2":
+        policy = NSGA2Policy(env, config)
     
     m1 = SuccessRate()
     m2 = AvgLatency()
@@ -163,7 +175,7 @@ def main():
         
         logger.update_metric('SuccessRate',SR)
         logger.update_metric('AvgLatency', L)
-        logger.update_metric("AvgPower", L)
+        logger.update_metric("AvgPower", E)
         
         env.close()
         
@@ -171,11 +183,11 @@ def main():
         
         logger.update_mode('Testing')
         
-        env = run_epoch(config, policy, test_data, train=False)
+        (SR, L, E) = run_epoch(config, policy, test_data, train=False)
         
-        logger.update_metric('SuccessRate', m1.eval(env.logger))
-        logger.update_metric('AvgLatency', m2.eval(env.logger))
-        logger.update_metric("AvgPower", env.avg_node_power())
+        logger.update_metric('SuccessRate', SR)
+        logger.update_metric('AvgLatency', L)
+        logger.update_metric("AvgPower", E)
         
         env.close()
 

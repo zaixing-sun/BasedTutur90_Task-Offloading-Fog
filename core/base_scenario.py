@@ -76,7 +76,6 @@ class BaseScenario(metaclass=ABCMeta):
             base_latency = self.calculate_base_latency(edge_info, src_node_id, 
                                                        dst_node_id, nodes)
             
-            print(base_latency)
             
             energy_coef = self.calculate_energy_coef(edge_info, src_node_id,
                                                      dst_node_id, nodes)

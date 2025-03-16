@@ -56,7 +56,7 @@ def main():
         "env": {
             "dataset": "Pakistan",
             "flag": "Tuple30K",  # Can change to Tuple50K or Tuple100K if desired.
-            "refresh_rate": 0.001
+            "refresh_rate": 0.01
         },
         "policy": "DemoGreedy",
     }
@@ -84,6 +84,9 @@ def main():
     # Begin the simulation.
     until = 0
     launched_task_cnt = 0
+    
+    
+    
     for i, task_info in data.iterrows():
         generated_time = task_info['GenerationTime']
         task = Task(task_id=task_info['TaskID'],
