@@ -39,8 +39,7 @@ class TaskFormerPolicy:
         self.gamma = config["training"]["gamma"]
         self.epsilon = config["training"]["epsilon"]
         self.lr = config["training"]["lr"]
-        self.beta = config.get("training", {}).get("beta", 0.5)
-        self.beta_decay = config.get("training", {}).get("beta_decay", 1)
+        self.beta = config["training"]["beta"]
         
         
         
@@ -48,6 +47,7 @@ class TaskFormerPolicy:
         n_layers = config["model"]["n_layers"]
         n_heads = config["model"]["n_heads"]
         mlp_ratio = config["model"]["mlp_ratio"]
+        n_layers_ratio = config["model"]["n_layers_ratio"]
         dropout = config["model"]["dropout"]
         mode = config["model"]["mode"]
         
@@ -175,8 +175,5 @@ class TaskFormerPolicy:
         self.optimizer.step()
 
         self.replay_buffer.clear()
-        
-        self.beta *= self.beta_decay
-        
         return loss.item()
 

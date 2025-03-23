@@ -44,7 +44,7 @@ class Individual:
         for i in range(len(self.weights)):
             obs = np.dot(obs, self.weights[i])
             if i < len(self.weights) - 1:
-                obs = Individual.ReLU(obs)
+                obs = self.ReLU(obs)
         return np.argmax(obs), obs
 
 
@@ -117,8 +117,8 @@ class NPGAPolicy:
         where higher success_rate is better and lower latency/power are better.
         (If using minimization in NPGA, convert success rate by taking its negative.)
         """
-        lambda_param = self.config["training"].get("latency_weight", 0.1)
-        mu_param = self.config["training"].get("power_weight", 0.1)
+        lambda_param = self.config["training"].get("latency_weight", 0.0001)
+        mu_param = self.config["training"].get("power_weight", 0.00001)
         # Here we assume success rate is maximized; if converted to minimization, adjust accordingly.
         scores = [sr - lambda_param * l - mu_param * e for (sr, l, e) in fitness]
         best_idx = np.argmax(scores)

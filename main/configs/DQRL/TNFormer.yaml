@@ -1,5 +1,5 @@
 
-policy: "TaskFormer-S"
+policy: "TNFormer"
 algo: "TaskFormer"
 
 env:
@@ -13,17 +13,18 @@ training:
   lr: 0.01
   gamma: 0.2
   epsilon: 0.1
-  epsilon_decay: 0.5
+  epsilon_decay: 0.6
   beta: 0.5
-  beta_decay: 0.6
+  beta_decay: 0.96
   lambda: [1, 0.01, 0.01]
+
 
 model:
   d_model: 64
   n_layers: 6
   n_heads: 4
   mlp_ratio: 4
-  dropout: 0.2  
-  mode: "task" # "mixed", node, task
+  dropout: 0.1  
+  mode: "mixed" # "mixed", node, task
 
     

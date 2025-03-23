@@ -38,7 +38,7 @@ def error_handler(error: Exception):
     else:
         raise
 
-def run_epoch(config, policy, data: pd.DataFrame, train=True, lambda_=(1e6, 1, 0.001
+def run_epoch(config, policy, data: pd.DataFrame, train=True, lambda_=(1, 1, 1
                                                                        )):
     """
     Run one simulation epoch over the provided task data.
@@ -53,6 +53,7 @@ def run_epoch(config, policy, data: pd.DataFrame, train=True, lambda_=(1e6, 1, 0
       
     Every 'batch_size' tasks, update the policy.
     """
+
     m1 = SuccessRate()
     m2 = AvgLatency()
     
@@ -63,13 +64,18 @@ def run_epoch(config, policy, data: pd.DataFrame, train=True, lambda_=(1e6, 1, 0
     last_task_id = None
     pbar = tqdm(data.iterrows(), total=len(data))
     stored_transitions = {}
+    number_in_batch = config["training"]["batch_size"]
+    
+    max_total_time = 0
+    max_total_energy = 0
+    
     for i, task_info in pbar:
         generated_time = task_info['GenerationTime']
         task = Task(task_id=task_info['TaskID'],
                     task_size=task_info['TaskSize'],
                     cycles_per_bit=task_info['CyclesPerBit'],
                     trans_bit_rate=task_info['TransBitRate'],
-                    ddl=task_info['DDL']/10,
+                    ddl=task_info['DDL'] ,
                     src_name='e0',
                     task_name=task_info['TaskName'])
 
@@ -84,6 +90,7 @@ def run_epoch(config, policy, data: pd.DataFrame, train=True, lambda_=(1e6, 1, 0
                 dst_name = env.scenario.node_id2name[action]
                 env.process(task=task, dst_name=dst_name)
                 launched_task_cnt += 1
+                number_in_batch -= 1
 
                 # Update previous transition with the new state's observation.
                 if last_task_id is not None and train:
@@ -97,7 +104,10 @@ def run_epoch(config, policy, data: pd.DataFrame, train=True, lambda_=(1e6, 1, 0
             try:
                 env.run(until=until)
             except Exception as e:
+                # print(f"Error: {e}")
                 error_handler(e)
+                
+        
 
             
         if train:
@@ -114,18 +124,21 @@ def run_epoch(config, policy, data: pd.DataFrame, train=True, lambda_=(1e6, 1, 0
                         total_time = task_trans_time + task_wait_time + task_exe_time
                         task_trans_energy, task_exe_energy = val[3]
                         total_energy = task_trans_energy + task_exe_energy
-                        reward = - ((lambda_[1] * total_time) + (lambda_[2] * total_energy))
+                        max_total_time = max(max_total_time, total_time)
+                        max_total_energy = max(max_total_energy, total_energy)
+                        reward = - ((lambda_[1] * total_time/max_total_time) + (lambda_[2] * total_energy/max_total_energy))
                     else:
                         reward = -lambda_[0]
                     policy.store_transition(state, action, reward, next_state, done)
                     del stored_transitions[task_id]
             # Update the policy every batch_size tasks during training.
-            if (i + 1) % config["training"]["batch_size"] == 0:
+            if number_in_batch < 1:
                 r1 = m1.eval(env.logger)
                 r2 = m2.eval(env.logger)
                 e = env.avg_node_power()
                 pbar.set_postfix({"SR": f"{r1:.3f}", "L": f"{r2:.3f}", "E": f"{e:.3f}"})
                 policy.update()
+                number_in_batch = np.random.randint(config["training"]["batch_size"]//2, config["training"]["batch_size"])
                 
 
 
@@ -149,11 +162,11 @@ def create_env(config):
     env.refresh_rate = config['env']['refresh_rate']
     return env
 
-
-
 def main():
+    
+    config_name = "NodeFormer"
 
-    config_path = "main/configs/DQRL/TaskFormer.yaml"
+    config_path = f"main/configs/DQRL/{config_name}.yaml"
     
     with open(config_path, 'r') as file:
         config = yaml.safe_load(file)
@@ -162,18 +175,23 @@ def main():
     
 
     env = create_env(config)
+
     
     # Load train and test datasets.
-    train_data = pd.read_csv(f"eval/benchmarks/Pakistan/data/{config['env']['flag']}/trainset.csv")
-    test_data = pd.read_csv(f"eval/benchmarks/Pakistan/data/{config['env']['flag']}/testset.csv")
+    train_data = pd.read_csv(f"eval/benchmarks/{config['env']['dataset']}/data/{config['env']['flag']}/trainset.csv")
+    test_data = pd.read_csv(f"eval/benchmarks/{config['env']['dataset']}/data/{config['env']['flag']}/testset.csv")
+    
+    #         # Load train and test datasets.
+    # train_data = pd.read_csv(f"eval/benchmarks/Topo4MEC/data/25N50E/trainset.csv")
+    # test_data = pd.read_csv(f"eval/benchmarks/Topo4MEC/data/25N50E/testset.csv")
 
-    if config["policy"] == "MLP":
+    if config["algo"] == "MLP":
         policy = MLPPolicy(env=env, config=config)
-    elif config["policy"] == "TaskFormer":
+    elif config["algo"] == "TaskFormer":
         policy = TaskFormerPolicy(env=env, config=config)
     
     
-    
+
     m1 = SuccessRate()
     m2 = AvgLatency()
     

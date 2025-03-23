@@ -1,5 +1,5 @@
 
-policy: "TaskFormer-S"
+policy: "NodeFormer"
 algo: "TaskFormer"
 
 env:
@@ -23,7 +23,7 @@ model:
   n_layers: 6
   n_heads: 4
   mlp_ratio: 4
-  dropout: 0.2  
-  mode: "task" # "mixed", node, task
+  dropout: 0.1  
+  mode: "node" # "mixed", node, task
 
     

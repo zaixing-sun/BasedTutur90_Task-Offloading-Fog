@@ -23,6 +23,8 @@ from policies.demo.demo_greedy import GreedyPolicy
 from policies.demo.demo_random import DemoRandom
 from policies.demo.demo_round_robin import RoundRobinPolicy
 
+import yaml
+
 def create_env(config):
     """
     Creates the environment using configuration parameters.
@@ -51,32 +53,33 @@ def error_handler(error: Exception):
         raise
 
 def main():
-    # Define configuration dictionary (acting as a config file).
-    config = {
-        "env": {
-            "dataset": "Pakistan",
-            "flag": "Tuple30K",  # Can change to Tuple50K or Tuple100K if desired.
-            "refresh_rate": 0.01
-        },
-        "policy": "DemoGreedy",
-    }
     
+    config_name = "RoundRobin"
+
+    config_path = f"main/configs/Heuristics/{config_name}.yaml"
+    
+    with open(config_path, 'r') as file:
+        config = yaml.safe_load(file)
+
     # Initialize the logger.
     logger = Logger(config)
     
     # Create the environment.
     env = create_env(config)
     
+    
     # Load the test dataset.
     flag = config["env"]["flag"]
     data = pd.read_csv(f"eval/benchmarks/Pakistan/data/{flag}/testset.csv")
+        # Load train and test datasets.
+    # data = pd.read_csv(f"eval/benchmarks/Topo4MEC/data/25N50E/testset.csv")
 
     # Init the policy.
-    if config["policy"] == "DemoGreedy":
+    if config["algo"] == "DemoGreedy":
         policy = GreedyPolicy()
-    elif config["policy"] == "DemoRandom":
+    elif config["algo"] == "DemoRandom":
         policy = DemoRandom()
-    elif config["policy"] == "DemoRoundRobin":
+    elif config["algo"] == "DemoRoundRobin":
         policy = RoundRobinPolicy()
     else:
         raise ValueError("Invalid policy name.")

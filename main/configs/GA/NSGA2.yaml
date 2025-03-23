@@ -6,18 +6,12 @@ env:
   refresh_rate: 0.01
 
 training:
-  num_epochs: 20        # Number of generations for NPGA
-  batch_size: 256
-  lr: 0.002
-  gamma: 0.2
-  epsilon: 0.1
-  epsilon_decay: 0.96
-  pop_size: 20          # Population size for NPGA
+  num_epochs: 30        # Number of generations for NPGA
+  pop_size: 30          # Population size for NPGA
   mutation_rate: 0.1    # Mutation rate for Gaussian mutation
-  niche_size: 5         # Niche size for NPGA tournament selection
 
 model:
   d_model: 128
-  n_layers: 1
-  obs_type: ["cpu"]
-  # obs_type: ["cpu", "bw", "buffer"]
+  n_layers: 3
+  # obs_type: ["cpu"]
+  obs_type: ["cpu", "bw", "buffer"]
