@@ -4,6 +4,7 @@ This script demonstrates how to use the Topo4MEC dataset.
 
 import os
 import sys
+import random
 
 current_file_path = os.path.abspath(__file__)
 current_dir = os.path.dirname(current_file_path)
@@ -37,9 +38,10 @@ def main():
     test_tasks = list(data.iloc[:].values)
 
     # Init the policy.
-    # policy = DemoRandom()
+    random.seed(8783578275289)
+    policy = DemoRandom()
     # policy = RoundRobinPolicy()
-    policy = GreedyPolicy()
+    # policy = GreedyPolicy()
 
     # Begin the simulation.
     until = 1

@@ -1,7 +1,7 @@
 import os
 import sys
 
-PROJECT_NAME = 'RayCloudSim'
+PROJECT_NAME = 'BasedTutur90_Task-Offloading-Fog'
 cur_path = os.path.abspath(os.path.dirname(__file__))
 root_path = cur_path
 while os.path.split(os.path.split(root_path)[0])[-1] != PROJECT_NAME:
