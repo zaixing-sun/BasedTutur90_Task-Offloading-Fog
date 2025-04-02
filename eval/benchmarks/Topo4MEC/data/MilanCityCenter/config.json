@@ -4,271 +4,301 @@
             "NodeType": "Node",
             "NodeName": "n0",
             "NodeId": 0,
-            "MaxCpuFreq": 1500,
-            "MaxBufferSize": 180,
-            "IdleEnergyCoef": 0.0098,
-            "ExeEnergyCoef": 0.0978
+            "MaxCpuFreq": 2600,
+            "MaxBufferSize": 60,
+            "IdleEnergyCoef": 0.0023,
+            "ExeEnergyCoef": 0.0227,
+            "Latency": 0.005
         },
         {
             "NodeType": "Node",
             "NodeName": "n1",
             "NodeId": 1,
-            "MaxCpuFreq": 2800,
-            "MaxBufferSize": 400,
-            "IdleEnergyCoef": 0.001,
-            "ExeEnergyCoef": 0.01
+            "MaxCpuFreq": 1200,
+            "MaxBufferSize": 350,
+            "IdleEnergyCoef": 0.0084,
+            "ExeEnergyCoef": 0.0841,
+            "Latency": 0.004
         },
         {
             "NodeType": "Node",
             "NodeName": "n2",
             "NodeId": 2,
-            "MaxCpuFreq": 3200,
-            "MaxBufferSize": 70,
-            "IdleEnergyCoef": 0.0016,
-            "ExeEnergyCoef": 0.0156
+            "MaxCpuFreq": 1500,
+            "MaxBufferSize": 290,
+            "IdleEnergyCoef": 0.001,
+            "ExeEnergyCoef": 0.01,
+            "Latency": 0.0025
         },
         {
             "NodeType": "Node",
             "NodeName": "n3",
             "NodeId": 3,
-            "MaxCpuFreq": 3700,
-            "MaxBufferSize": 160,
-            "IdleEnergyCoef": 0.0083,
-            "ExeEnergyCoef": 0.0828
+            "MaxCpuFreq": 4600,
+            "MaxBufferSize": 260,
+            "IdleEnergyCoef": 0.006,
+            "ExeEnergyCoef": 0.0604,
+            "Latency": 0.0044
         },
         {
             "NodeType": "Node",
             "NodeName": "n4",
             "NodeId": 4,
-            "MaxCpuFreq": 2100,
-            "MaxBufferSize": 150,
-            "IdleEnergyCoef": 0.0014,
-            "ExeEnergyCoef": 0.0142
+            "MaxCpuFreq": 3400,
+            "MaxBufferSize": 330,
+            "IdleEnergyCoef": 0.0087,
+            "ExeEnergyCoef": 0.0869,
+            "Latency": 0.0039
         },
         {
             "NodeType": "Node",
             "NodeName": "n5",
             "NodeId": 5,
-            "MaxCpuFreq": 3700,
-            "MaxBufferSize": 90,
-            "IdleEnergyCoef": 0.0052,
-            "ExeEnergyCoef": 0.0521
+            "MaxCpuFreq": 4700,
+            "MaxBufferSize": 350,
+            "IdleEnergyCoef": 0.003,
+            "ExeEnergyCoef": 0.03,
+            "Latency": 0.0025
         },
         {
             "NodeType": "Node",
             "NodeName": "n6",
             "NodeId": 6,
-            "MaxCpuFreq": 2800,
-            "MaxBufferSize": 200,
-            "IdleEnergyCoef": 0.0071,
-            "ExeEnergyCoef": 0.0705
+            "MaxCpuFreq": 3900,
+            "MaxBufferSize": 210,
+            "IdleEnergyCoef": 0.0079,
+            "ExeEnergyCoef": 0.0794,
+            "Latency": 0.0021
         },
         {
             "NodeType": "Node",
             "NodeName": "n7",
             "NodeId": 7,
-            "MaxCpuFreq": 4700,
-            "MaxBufferSize": 380,
-            "IdleEnergyCoef": 0.0026,
-            "ExeEnergyCoef": 0.0258
+            "MaxCpuFreq": 3300,
+            "MaxBufferSize": 310,
+            "IdleEnergyCoef": 0.003,
+            "ExeEnergyCoef": 0.0301,
+            "Latency": 0.005
         },
         {
             "NodeType": "Node",
             "NodeName": "n8",
             "NodeId": 8,
-            "MaxCpuFreq": 2800,
-            "MaxBufferSize": 310,
-            "IdleEnergyCoef": 0.0082,
-            "ExeEnergyCoef": 0.0819
+            "MaxCpuFreq": 3000,
+            "MaxBufferSize": 160,
+            "IdleEnergyCoef": 0.0094,
+            "ExeEnergyCoef": 0.0943,
+            "Latency": 0.0036
         },
         {
             "NodeType": "Node",
             "NodeName": "n9",
             "NodeId": 9,
-            "MaxCpuFreq": 1000,
-            "MaxBufferSize": 350,
-            "IdleEnergyCoef": 0.0086,
-            "ExeEnergyCoef": 0.0863
+            "MaxCpuFreq": 2300,
+            "MaxBufferSize": 100,
+            "IdleEnergyCoef": 0.0093,
+            "ExeEnergyCoef": 0.0933,
+            "Latency": 0.0015
         },
         {
             "NodeType": "Node",
             "NodeName": "n10",
             "NodeId": 10,
-            "MaxCpuFreq": 4000,
-            "MaxBufferSize": 370,
-            "IdleEnergyCoef": 0.001,
-            "ExeEnergyCoef": 0.01
+            "MaxCpuFreq": 1600,
+            "MaxBufferSize": 70,
+            "IdleEnergyCoef": 0.0081,
+            "ExeEnergyCoef": 0.0813,
+            "Latency": 0.0047
         },
         {
             "NodeType": "Node",
             "NodeName": "n11",
             "NodeId": 11,
-            "MaxCpuFreq": 3600,
-            "MaxBufferSize": 260,
-            "IdleEnergyCoef": 0.0038,
-            "ExeEnergyCoef": 0.0377
+            "MaxCpuFreq": 4700,
+            "MaxBufferSize": 160,
+            "IdleEnergyCoef": 0.0041,
+            "ExeEnergyCoef": 0.0413,
+            "Latency": 0.0045
         },
         {
             "NodeType": "Node",
             "NodeName": "n12",
             "NodeId": 12,
-            "MaxCpuFreq": 2100,
-            "MaxBufferSize": 340,
-            "IdleEnergyCoef": 0.0012,
-            "ExeEnergyCoef": 0.0124
+            "MaxCpuFreq": 1700,
+            "MaxBufferSize": 110,
+            "IdleEnergyCoef": 0.002,
+            "ExeEnergyCoef": 0.02,
+            "Latency": 0.0029
         },
         {
             "NodeType": "Node",
             "NodeName": "n13",
             "NodeId": 13,
-            "MaxCpuFreq": 1800,
-            "MaxBufferSize": 210,
-            "IdleEnergyCoef": 0.0098,
-            "ExeEnergyCoef": 0.0982
+            "MaxCpuFreq": 3900,
+            "MaxBufferSize": 250,
+            "IdleEnergyCoef": 0.0018,
+            "ExeEnergyCoef": 0.0176,
+            "Latency": 0.0017
         },
         {
             "NodeType": "Node",
             "NodeName": "n14",
             "NodeId": 14,
-            "MaxCpuFreq": 1600,
-            "MaxBufferSize": 100,
-            "IdleEnergyCoef": 0.007,
-            "ExeEnergyCoef": 0.0705
+            "MaxCpuFreq": 1200,
+            "MaxBufferSize": 300,
+            "IdleEnergyCoef": 0.009,
+            "ExeEnergyCoef": 0.0899,
+            "Latency": 0.0028
         },
         {
             "NodeType": "Node",
             "NodeName": "n15",
             "NodeId": 15,
-            "MaxCpuFreq": 1800,
-            "MaxBufferSize": 320,
-            "IdleEnergyCoef": 0.0021,
-            "ExeEnergyCoef": 0.0213
+            "MaxCpuFreq": 5000,
+            "MaxBufferSize": 360,
+            "IdleEnergyCoef": 0.0017,
+            "ExeEnergyCoef": 0.0174,
+            "Latency": 0.0004
         },
         {
             "NodeType": "Node",
             "NodeName": "n16",
             "NodeId": 16,
-            "MaxCpuFreq": 1600,
-            "MaxBufferSize": 350,
-            "IdleEnergyCoef": 0.0078,
-            "ExeEnergyCoef": 0.0783
+            "MaxCpuFreq": 5000,
+            "MaxBufferSize": 380,
+            "IdleEnergyCoef": 0.0048,
+            "ExeEnergyCoef": 0.0482,
+            "Latency": 0.0044
         },
         {
             "NodeType": "Node",
             "NodeName": "n17",
             "NodeId": 17,
-            "MaxCpuFreq": 3800,
-            "MaxBufferSize": 80,
-            "IdleEnergyCoef": 0.001,
-            "ExeEnergyCoef": 0.01
+            "MaxCpuFreq": 3900,
+            "MaxBufferSize": 270,
+            "IdleEnergyCoef": 0.0087,
+            "ExeEnergyCoef": 0.0875,
+            "Latency": 0.0005
         },
         {
             "NodeType": "Node",
             "NodeName": "n18",
             "NodeId": 18,
-            "MaxCpuFreq": 2200,
-            "MaxBufferSize": 370,
-            "IdleEnergyCoef": 0.0093,
-            "ExeEnergyCoef": 0.093
+            "MaxCpuFreq": 2300,
+            "MaxBufferSize": 220,
+            "IdleEnergyCoef": 0.0018,
+            "ExeEnergyCoef": 0.018,
+            "Latency": 0.003
         },
         {
             "NodeType": "Node",
             "NodeName": "n19",
             "NodeId": 19,
-            "MaxCpuFreq": 3400,
-            "MaxBufferSize": 260,
-            "IdleEnergyCoef": 0.0035,
-            "ExeEnergyCoef": 0.0346
+            "MaxCpuFreq": 3500,
+            "MaxBufferSize": 130,
+            "IdleEnergyCoef": 0.0096,
+            "ExeEnergyCoef": 0.0958,
+            "Latency": 0.0035
         },
         {
             "NodeType": "Node",
             "NodeName": "n20",
             "NodeId": 20,
-            "MaxCpuFreq": 2800,
-            "MaxBufferSize": 320,
-            "IdleEnergyCoef": 0.0052,
-            "ExeEnergyCoef": 0.0523
+            "MaxCpuFreq": 2700,
+            "MaxBufferSize": 250,
+            "IdleEnergyCoef": 0.0037,
+            "ExeEnergyCoef": 0.0374,
+            "Latency": 0.001
         },
         {
             "NodeType": "Node",
             "NodeName": "n21",
             "NodeId": 21,
-            "MaxCpuFreq": 2200,
-            "MaxBufferSize": 170,
-            "IdleEnergyCoef": 0.0091,
-            "ExeEnergyCoef": 0.0907
+            "MaxCpuFreq": 2400,
+            "MaxBufferSize": 310,
+            "IdleEnergyCoef": 0.0083,
+            "ExeEnergyCoef": 0.0832,
+            "Latency": 0.0021
         },
         {
             "NodeType": "Node",
             "NodeName": "n22",
             "NodeId": 22,
-            "MaxCpuFreq": 2600,
-            "MaxBufferSize": 130,
-            "IdleEnergyCoef": 0.0041,
-            "ExeEnergyCoef": 0.0409
+            "MaxCpuFreq": 4600,
+            "MaxBufferSize": 260,
+            "IdleEnergyCoef": 0.0035,
+            "ExeEnergyCoef": 0.0353,
+            "Latency": 0.0023
         },
         {
             "NodeType": "Node",
             "NodeName": "n23",
             "NodeId": 23,
-            "MaxCpuFreq": 3000,
-            "MaxBufferSize": 380,
-            "IdleEnergyCoef": 0.009,
-            "ExeEnergyCoef": 0.0896
+            "MaxCpuFreq": 2100,
+            "MaxBufferSize": 60,
+            "IdleEnergyCoef": 0.0014,
+            "ExeEnergyCoef": 0.0145,
+            "Latency": 0.0024
         },
         {
             "NodeType": "Node",
             "NodeName": "n24",
             "NodeId": 24,
-            "MaxCpuFreq": 3100,
-            "MaxBufferSize": 360,
-            "IdleEnergyCoef": 0.001,
-            "ExeEnergyCoef": 0.01
+            "MaxCpuFreq": 1800,
+            "MaxBufferSize": 340,
+            "IdleEnergyCoef": 0.004,
+            "ExeEnergyCoef": 0.0396,
+            "Latency": 0.0019
         },
         {
             "NodeType": "Node",
             "NodeName": "n25",
             "NodeId": 25,
-            "MaxCpuFreq": 3100,
-            "MaxBufferSize": 120,
-            "IdleEnergyCoef": 0.0063,
-            "ExeEnergyCoef": 0.0633
+            "MaxCpuFreq": 2400,
+            "MaxBufferSize": 50,
+            "IdleEnergyCoef": 0.0066,
+            "ExeEnergyCoef": 0.0663,
+            "Latency": 0.0028
         },
         {
             "NodeType": "Node",
             "NodeName": "n26",
             "NodeId": 26,
-            "MaxCpuFreq": 2800,
-            "MaxBufferSize": 140,
-            "IdleEnergyCoef": 0.0063,
-            "ExeEnergyCoef": 0.0625
+            "MaxCpuFreq": 3700,
+            "MaxBufferSize": 160,
+            "IdleEnergyCoef": 0.0053,
+            "ExeEnergyCoef": 0.0527,
+            "Latency": 0.0039
         },
         {
             "NodeType": "Node",
             "NodeName": "n27",
             "NodeId": 27,
             "MaxCpuFreq": 2300,
-            "MaxBufferSize": 70,
-            "IdleEnergyCoef": 0.0056,
-            "ExeEnergyCoef": 0.0557
+            "MaxBufferSize": 250,
+            "IdleEnergyCoef": 0.0083,
+            "ExeEnergyCoef": 0.0827,
+            "Latency": 0.0032
         },
         {
             "NodeType": "Node",
             "NodeName": "n28",
             "NodeId": 28,
-            "MaxCpuFreq": 2700,
-            "MaxBufferSize": 260,
-            "IdleEnergyCoef": 0.0082,
-            "ExeEnergyCoef": 0.0819
+            "MaxCpuFreq": 2100,
+            "MaxBufferSize": 90,
+            "IdleEnergyCoef": 0.0079,
+            "ExeEnergyCoef": 0.0788,
+            "Latency": 0.0025
         },
         {
             "NodeType": "Node",
             "NodeName": "n29",
             "NodeId": 29,
-            "MaxCpuFreq": 1600,
-            "MaxBufferSize": 260,
+            "MaxCpuFreq": 2700,
+            "MaxBufferSize": 250,
             "IdleEnergyCoef": 0.001,
-            "ExeEnergyCoef": 0.01
+            "ExeEnergyCoef": 0.01,
+            "Latency": 0.0024
         }
     ],
     "Edges": [

@@ -1,5 +1,5 @@
 {
-    "num_arrivals_per_ingress": 200,
+    "num_arrivals_per_ingress": 100,
     "lambdas": [
         0.125,
         0.125,
