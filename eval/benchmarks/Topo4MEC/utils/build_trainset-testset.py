@@ -15,7 +15,6 @@ def generate_tasks(num_arrivals_per_ingress, lambda_, ingress_line, param_TaskSi
     :param param_CyclesPerBit: Tuple of min and max cycles per bit
     :param param_TransBitRate: Tuple of min and max transmission bit rate           
     :param param_DDL: Tuple of min and max deadline
-    # :papram param_Latency: Tuple of min and max latency
     :return: List of generated tasks
     """
     tasks = []
@@ -46,7 +45,7 @@ def generate_tasks(num_arrivals_per_ingress, lambda_, ingress_line, param_TaskSi
                 tasks.append(
                     [
                         f't{0}', # TaskName (invalid)
-                        arrival_time, # GenerationTime
+                        np.round(arrival_time),  # arrival_time, #    # GenerationTime 
                         0,  # TaskID (invalid)
                         np.random.randint(*param_TaskSize),  # TaskSize
                         np.random.randint(*param_CyclesPerBit),  # CyclesPerBit
@@ -108,7 +107,7 @@ def main():
     param_CyclesPerBit = (100, 1000 + 1)  # per-MBit
     param_TransBitRate = (1, 5)  # Mbps
     param_DDL = (20, 100 + 1)  # s
-    param_Latency = (0, 0.005)  # s
+    # param_Latency = (0, 0.005)  # s
 
     # 2. scenarios
     scenarios = ['25N50E', '50N50E', '100N150E', 'MilanCityCenter']

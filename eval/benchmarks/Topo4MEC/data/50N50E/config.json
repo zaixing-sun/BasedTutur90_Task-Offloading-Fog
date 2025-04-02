@@ -4,261 +4,235 @@
             "NodeType": "Node",
             "NodeName": "n0",
             "NodeId": 0,
-            "MaxCpuFreq": 3000,
-            "MaxBufferSize": 260,
-            "IdleEnergyCoef": 0.0043,
-            "ExeEnergyCoef": 0.0429,
-            "Latency": 0.0006
+            "MaxCpuFreq": 2900,
+            "MaxBufferSize": 380,
+            "IdleEnergyCoef": 0.0017,
+            "ExeEnergyCoef": 0.0169
         },
         {
             "NodeType": "Node",
             "NodeName": "n1",
             "NodeId": 1,
-            "MaxCpuFreq": 2700,
-            "MaxBufferSize": 180,
-            "IdleEnergyCoef": 0.0025,
-            "ExeEnergyCoef": 0.025,
-            "Latency": 0.0019
+            "MaxCpuFreq": 3200,
+            "MaxBufferSize": 360,
+            "IdleEnergyCoef": 0.0058,
+            "ExeEnergyCoef": 0.0576
         },
         {
             "NodeType": "Node",
             "NodeName": "n2",
             "NodeId": 2,
-            "MaxCpuFreq": 2400,
-            "MaxBufferSize": 300,
-            "IdleEnergyCoef": 0.0041,
-            "ExeEnergyCoef": 0.0405,
-            "Latency": 0.0002
+            "MaxCpuFreq": 4200,
+            "MaxBufferSize": 260,
+            "IdleEnergyCoef": 0.0085,
+            "ExeEnergyCoef": 0.0846
         },
         {
             "NodeType": "Node",
             "NodeName": "n3",
             "NodeId": 3,
-            "MaxCpuFreq": 1600,
-            "MaxBufferSize": 120,
-            "IdleEnergyCoef": 0.0057,
-            "ExeEnergyCoef": 0.0572,
-            "Latency": 0.0012
+            "MaxCpuFreq": 3400,
+            "MaxBufferSize": 320,
+            "IdleEnergyCoef": 0.0021,
+            "ExeEnergyCoef": 0.0215
         },
         {
             "NodeType": "Node",
             "NodeName": "n4",
             "NodeId": 4,
             "MaxCpuFreq": 3900,
-            "MaxBufferSize": 50,
-            "IdleEnergyCoef": 0.0039,
-            "ExeEnergyCoef": 0.0388,
-            "Latency": 0.004
+            "MaxBufferSize": 110,
+            "IdleEnergyCoef": 0.0067,
+            "ExeEnergyCoef": 0.0674
         },
         {
             "NodeType": "Node",
             "NodeName": "n5",
             "NodeId": 5,
-            "MaxCpuFreq": 1800,
-            "MaxBufferSize": 380,
-            "IdleEnergyCoef": 0.0045,
-            "ExeEnergyCoef": 0.0447,
-            "Latency": 0.0024
+            "MaxCpuFreq": 1200,
+            "MaxBufferSize": 320,
+            "IdleEnergyCoef": 0.0015,
+            "ExeEnergyCoef": 0.0149
         },
         {
             "NodeType": "Node",
             "NodeName": "n6",
             "NodeId": 6,
-            "MaxCpuFreq": 1000,
-            "MaxBufferSize": 60,
-            "IdleEnergyCoef": 0.0027,
-            "ExeEnergyCoef": 0.0272,
-            "Latency": 0.0036
+            "MaxCpuFreq": 4300,
+            "MaxBufferSize": 230,
+            "IdleEnergyCoef": 0.0084,
+            "ExeEnergyCoef": 0.0843
         },
         {
             "NodeType": "Node",
             "NodeName": "n7",
             "NodeId": 7,
-            "MaxCpuFreq": 4500,
+            "MaxCpuFreq": 4000,
             "MaxBufferSize": 150,
-            "IdleEnergyCoef": 0.0037,
-            "ExeEnergyCoef": 0.0365,
-            "Latency": 0.0024
+            "IdleEnergyCoef": 0.0064,
+            "ExeEnergyCoef": 0.0636
         },
         {
             "NodeType": "Node",
             "NodeName": "n8",
             "NodeId": 8,
-            "MaxCpuFreq": 4600,
-            "MaxBufferSize": 60,
-            "IdleEnergyCoef": 0.003,
-            "ExeEnergyCoef": 0.0299,
-            "Latency": 0.0049
+            "MaxCpuFreq": 2200,
+            "MaxBufferSize": 270,
+            "IdleEnergyCoef": 0.0053,
+            "ExeEnergyCoef": 0.0532
         },
         {
             "NodeType": "Node",
             "NodeName": "n9",
             "NodeId": 9,
-            "MaxCpuFreq": 4800,
-            "MaxBufferSize": 360,
-            "IdleEnergyCoef": 0.0067,
-            "ExeEnergyCoef": 0.0667,
-            "Latency": 0.0042
+            "MaxCpuFreq": 1900,
+            "MaxBufferSize": 250,
+            "IdleEnergyCoef": 0.0049,
+            "ExeEnergyCoef": 0.0491
         },
         {
             "NodeType": "Node",
             "NodeName": "n10",
             "NodeId": 10,
-            "MaxCpuFreq": 2300,
-            "MaxBufferSize": 70,
-            "IdleEnergyCoef": 0.0051,
-            "ExeEnergyCoef": 0.0513,
-            "Latency": 0.0019
+            "MaxCpuFreq": 1800,
+            "MaxBufferSize": 180,
+            "IdleEnergyCoef": 0.0095,
+            "ExeEnergyCoef": 0.0947
         },
         {
             "NodeType": "Node",
             "NodeName": "n11",
             "NodeId": 11,
-            "MaxCpuFreq": 3900,
-            "MaxBufferSize": 110,
-            "IdleEnergyCoef": 0.0067,
-            "ExeEnergyCoef": 0.0674,
-            "Latency": 0.0007
+            "MaxCpuFreq": 3200,
+            "MaxBufferSize": 60,
+            "IdleEnergyCoef": 0.0033,
+            "ExeEnergyCoef": 0.0326
         },
         {
             "NodeType": "Node",
             "NodeName": "n12",
             "NodeId": 12,
-            "MaxCpuFreq": 3700,
-            "MaxBufferSize": 260,
-            "IdleEnergyCoef": 0.001,
-            "ExeEnergyCoef": 0.01,
-            "Latency": 0.0036
+            "MaxCpuFreq": 2800,
+            "MaxBufferSize": 190,
+            "IdleEnergyCoef": 0.0062,
+            "ExeEnergyCoef": 0.0617
         },
         {
             "NodeType": "Node",
             "NodeName": "n13",
             "NodeId": 13,
-            "MaxCpuFreq": 1200,
-            "MaxBufferSize": 350,
-            "IdleEnergyCoef": 0.0028,
-            "ExeEnergyCoef": 0.0283,
-            "Latency": 0.0008
+            "MaxCpuFreq": 2900,
+            "MaxBufferSize": 80,
+            "IdleEnergyCoef": 0.001,
+            "ExeEnergyCoef": 0.01
         },
         {
             "NodeType": "Node",
             "NodeName": "n14",
             "NodeId": 14,
-            "MaxCpuFreq": 3200,
-            "MaxBufferSize": 360,
-            "IdleEnergyCoef": 0.0055,
-            "ExeEnergyCoef": 0.0551,
-            "Latency": 0.0028
+            "MaxCpuFreq": 1300,
+            "MaxBufferSize": 350,
+            "IdleEnergyCoef": 0.0078,
+            "ExeEnergyCoef": 0.0779
         },
         {
             "NodeType": "Node",
             "NodeName": "n15",
             "NodeId": 15,
-            "MaxCpuFreq": 3000,
-            "MaxBufferSize": 130,
-            "IdleEnergyCoef": 0.0016,
-            "ExeEnergyCoef": 0.0156,
-            "Latency": 0.0011
+            "MaxCpuFreq": 2100,
+            "MaxBufferSize": 270,
+            "IdleEnergyCoef": 0.0039,
+            "ExeEnergyCoef": 0.039
         },
         {
             "NodeType": "Node",
             "NodeName": "n16",
             "NodeId": 16,
-            "MaxCpuFreq": 1100,
+            "MaxCpuFreq": 2200,
             "MaxBufferSize": 110,
-            "IdleEnergyCoef": 0.0042,
-            "ExeEnergyCoef": 0.0422,
-            "Latency": 0.0014
+            "IdleEnergyCoef": 0.0075,
+            "ExeEnergyCoef": 0.075
         },
         {
             "NodeType": "Node",
             "NodeName": "n17",
             "NodeId": 17,
-            "MaxCpuFreq": 1900,
-            "MaxBufferSize": 240,
-            "IdleEnergyCoef": 0.0023,
-            "ExeEnergyCoef": 0.0231,
-            "Latency": 0.0048
+            "MaxCpuFreq": 4000,
+            "MaxBufferSize": 190,
+            "IdleEnergyCoef": 0.0065,
+            "ExeEnergyCoef": 0.0651
         },
         {
             "NodeType": "Node",
             "NodeName": "n18",
             "NodeId": 18,
-            "MaxCpuFreq": 1300,
-            "MaxBufferSize": 350,
-            "IdleEnergyCoef": 0.0078,
-            "ExeEnergyCoef": 0.0779,
-            "Latency": 0.0019
+            "MaxCpuFreq": 2900,
+            "MaxBufferSize": 380,
+            "IdleEnergyCoef": 0.0051,
+            "ExeEnergyCoef": 0.0508
         },
         {
             "NodeType": "Node",
             "NodeName": "n19",
             "NodeId": 19,
-            "MaxCpuFreq": 3200,
-            "MaxBufferSize": 170,
-            "IdleEnergyCoef": 0.0018,
-            "ExeEnergyCoef": 0.0182,
-            "Latency": 0.0005
+            "MaxCpuFreq": 4300,
+            "MaxBufferSize": 300,
+            "IdleEnergyCoef": 0.0017,
+            "ExeEnergyCoef": 0.0168
         },
         {
             "NodeType": "Node",
             "NodeName": "n20",
             "NodeId": 20,
-            "MaxCpuFreq": 2400,
-            "MaxBufferSize": 370,
-            "IdleEnergyCoef": 0.0035,
-            "ExeEnergyCoef": 0.0346,
-            "Latency": 0.0018
+            "MaxCpuFreq": 3900,
+            "MaxBufferSize": 200,
+            "IdleEnergyCoef": 0.0089,
+            "ExeEnergyCoef": 0.0895
         },
         {
             "NodeType": "Node",
             "NodeName": "n21",
             "NodeId": 21,
-            "MaxCpuFreq": 2500,
-            "MaxBufferSize": 380,
-            "IdleEnergyCoef": 0.0052,
-            "ExeEnergyCoef": 0.0523,
-            "Latency": 0.003
+            "MaxCpuFreq": 1300,
+            "MaxBufferSize": 130,
+            "IdleEnergyCoef": 0.001,
+            "ExeEnergyCoef": 0.01
         },
         {
             "NodeType": "Node",
             "NodeName": "n22",
             "NodeId": 22,
-            "MaxCpuFreq": 3900,
-            "MaxBufferSize": 200,
-            "IdleEnergyCoef": 0.0089,
-            "ExeEnergyCoef": 0.0895,
-            "Latency": 0.0002
+            "MaxCpuFreq": 4100,
+            "MaxBufferSize": 220,
+            "IdleEnergyCoef": 0.0023,
+            "ExeEnergyCoef": 0.0227
         },
         {
             "NodeType": "Node",
             "NodeName": "n23",
             "NodeId": 23,
-            "MaxCpuFreq": 1800,
-            "MaxBufferSize": 190,
-            "IdleEnergyCoef": 0.001,
-            "ExeEnergyCoef": 0.01,
-            "Latency": 0.0026
+            "MaxCpuFreq": 3700,
+            "MaxBufferSize": 370,
+            "IdleEnergyCoef": 0.0092,
+            "ExeEnergyCoef": 0.0916
         },
         {
             "NodeType": "Node",
             "NodeName": "n24",
             "NodeId": 24,
-            "MaxCpuFreq": 2900,
+            "MaxCpuFreq": 1300,
             "MaxBufferSize": 320,
-            "IdleEnergyCoef": 0.0028,
-            "ExeEnergyCoef": 0.0281,
-            "Latency": 0.0026
+            "IdleEnergyCoef": 0.007,
+            "ExeEnergyCoef": 0.0699
         },
         {
             "NodeType": "Node",
             "NodeName": "n25",
             "NodeId": 25,
-            "MaxCpuFreq": 3700,
-            "MaxBufferSize": 80,
-            "IdleEnergyCoef": 0.0069,
-            "ExeEnergyCoef": 0.0685,
-            "Latency": 0.0042
+            "MaxCpuFreq": 1300,
+            "MaxBufferSize": 290,
+            "IdleEnergyCoef": 0.0075,
+            "ExeEnergyCoef": 0.0753
         },
         {
             "NodeType": "Node",
@@ -266,239 +240,215 @@
             "NodeId": 26,
             "MaxCpuFreq": 1100,
             "MaxBufferSize": 370,
-            "IdleEnergyCoef": 0.0039,
-            "ExeEnergyCoef": 0.0389,
-            "Latency": 0.0044
+            "IdleEnergyCoef": 0.0046,
+            "ExeEnergyCoef": 0.0458
         },
         {
             "NodeType": "Node",
             "NodeName": "n27",
             "NodeId": 27,
-            "MaxCpuFreq": 3000,
-            "MaxBufferSize": 310,
-            "IdleEnergyCoef": 0.0058,
-            "ExeEnergyCoef": 0.0577,
-            "Latency": 0.001
+            "MaxCpuFreq": 4600,
+            "MaxBufferSize": 150,
+            "IdleEnergyCoef": 0.0087,
+            "ExeEnergyCoef": 0.0872
         },
         {
             "NodeType": "Node",
             "NodeName": "n28",
             "NodeId": 28,
-            "MaxCpuFreq": 2600,
-            "MaxBufferSize": 70,
-            "IdleEnergyCoef": 0.001,
-            "ExeEnergyCoef": 0.01,
-            "Latency": 0.0025
+            "MaxCpuFreq": 3600,
+            "MaxBufferSize": 170,
+            "IdleEnergyCoef": 0.0032,
+            "ExeEnergyCoef": 0.0316
         },
         {
             "NodeType": "Node",
             "NodeName": "n29",
             "NodeId": 29,
-            "MaxCpuFreq": 3000,
-            "MaxBufferSize": 90,
-            "IdleEnergyCoef": 0.007,
-            "ExeEnergyCoef": 0.0697,
-            "Latency": 0.001
+            "MaxCpuFreq": 2600,
+            "MaxBufferSize": 70,
+            "IdleEnergyCoef": 0.004,
+            "ExeEnergyCoef": 0.0398
         },
         {
             "NodeType": "Node",
             "NodeName": "n30",
             "NodeId": 30,
-            "MaxCpuFreq": 2600,
-            "MaxBufferSize": 60,
-            "IdleEnergyCoef": 0.0084,
-            "ExeEnergyCoef": 0.0835,
-            "Latency": 0.002
+            "MaxCpuFreq": 5000,
+            "MaxBufferSize": 250,
+            "IdleEnergyCoef": 0.0051,
+            "ExeEnergyCoef": 0.0507
         },
         {
             "NodeType": "Node",
             "NodeName": "n31",
             "NodeId": 31,
-            "MaxCpuFreq": 2100,
-            "MaxBufferSize": 360,
-            "IdleEnergyCoef": 0.0092,
-            "ExeEnergyCoef": 0.092,
-            "Latency": 0.0025
+            "MaxCpuFreq": 3600,
+            "MaxBufferSize": 70,
+            "IdleEnergyCoef": 0.001,
+            "ExeEnergyCoef": 0.01
         },
         {
             "NodeType": "Node",
             "NodeName": "n32",
             "NodeId": 32,
-            "MaxCpuFreq": 2300,
-            "MaxBufferSize": 50,
-            "IdleEnergyCoef": 0.0068,
-            "ExeEnergyCoef": 0.0679,
-            "Latency": 0.0013
+            "MaxCpuFreq": 3500,
+            "MaxBufferSize": 160,
+            "IdleEnergyCoef": 0.0026,
+            "ExeEnergyCoef": 0.0264
         },
         {
             "NodeType": "Node",
             "NodeName": "n33",
             "NodeId": 33,
-            "MaxCpuFreq": 4200,
-            "MaxBufferSize": 160,
-            "IdleEnergyCoef": 0.0083,
-            "ExeEnergyCoef": 0.0829,
-            "Latency": 0.0004
+            "MaxCpuFreq": 3800,
+            "MaxBufferSize": 270,
+            "IdleEnergyCoef": 0.005,
+            "ExeEnergyCoef": 0.0499
         },
         {
             "NodeType": "Node",
             "NodeName": "n34",
             "NodeId": 34,
-            "MaxCpuFreq": 1500,
-            "MaxBufferSize": 190,
-            "IdleEnergyCoef": 0.0037,
-            "ExeEnergyCoef": 0.0368,
-            "Latency": 0.0019
+            "MaxCpuFreq": 1000,
+            "MaxBufferSize": 210,
+            "IdleEnergyCoef": 0.0089,
+            "ExeEnergyCoef": 0.0893
         },
         {
             "NodeType": "Node",
             "NodeName": "n35",
             "NodeId": 35,
-            "MaxCpuFreq": 1900,
-            "MaxBufferSize": 260,
-            "IdleEnergyCoef": 0.0089,
-            "ExeEnergyCoef": 0.0888,
-            "Latency": 0.0032
+            "MaxCpuFreq": 4700,
+            "MaxBufferSize": 370,
+            "IdleEnergyCoef": 0.0016,
+            "ExeEnergyCoef": 0.0155
         },
         {
             "NodeType": "Node",
             "NodeName": "n36",
             "NodeId": 36,
-            "MaxCpuFreq": 1900,
-            "MaxBufferSize": 70,
-            "IdleEnergyCoef": 0.0095,
-            "ExeEnergyCoef": 0.0948,
-            "Latency": 0.0027
+            "MaxCpuFreq": 2100,
+            "MaxBufferSize": 90,
+            "IdleEnergyCoef": 0.0098,
+            "ExeEnergyCoef": 0.0984
         },
         {
             "NodeType": "Node",
             "NodeName": "n37",
             "NodeId": 37,
-            "MaxCpuFreq": 2100,
-            "MaxBufferSize": 130,
-            "IdleEnergyCoef": 0.005,
-            "ExeEnergyCoef": 0.0503,
-            "Latency": 0.0028
+            "MaxCpuFreq": 1400,
+            "MaxBufferSize": 100,
+            "IdleEnergyCoef": 0.0031,
+            "ExeEnergyCoef": 0.0311
         },
         {
             "NodeType": "Node",
             "NodeName": "n38",
             "NodeId": 38,
-            "MaxCpuFreq": 3700,
-            "MaxBufferSize": 280,
-            "IdleEnergyCoef": 0.0092,
-            "ExeEnergyCoef": 0.0923,
-            "Latency": 0.0014
+            "MaxCpuFreq": 4500,
+            "MaxBufferSize": 230,
+            "IdleEnergyCoef": 0.0022,
+            "ExeEnergyCoef": 0.0222
         },
         {
             "NodeType": "Node",
             "NodeName": "n39",
             "NodeId": 39,
-            "MaxCpuFreq": 4200,
-            "MaxBufferSize": 90,
-            "IdleEnergyCoef": 0.0082,
-            "ExeEnergyCoef": 0.082,
-            "Latency": 0.004
+            "MaxCpuFreq": 3100,
+            "MaxBufferSize": 100,
+            "IdleEnergyCoef": 0.0074,
+            "ExeEnergyCoef": 0.0744
         },
         {
             "NodeType": "Node",
             "NodeName": "n40",
             "NodeId": 40,
-            "MaxCpuFreq": 4300,
-            "MaxBufferSize": 360,
-            "IdleEnergyCoef": 0.0081,
-            "ExeEnergyCoef": 0.0805,
-            "Latency": 0.0047
+            "MaxCpuFreq": 1900,
+            "MaxBufferSize": 70,
+            "IdleEnergyCoef": 0.0095,
+            "ExeEnergyCoef": 0.0948
         },
         {
             "NodeType": "Node",
             "NodeName": "n41",
             "NodeId": 41,
             "MaxCpuFreq": 4200,
-            "MaxBufferSize": 180,
-            "IdleEnergyCoef": 0.0092,
-            "ExeEnergyCoef": 0.0916,
-            "Latency": 0.0039
+            "MaxBufferSize": 160,
+            "IdleEnergyCoef": 0.0053,
+            "ExeEnergyCoef": 0.0533
         },
         {
             "NodeType": "Node",
             "NodeName": "n42",
             "NodeId": 42,
-            "MaxCpuFreq": 3800,
-            "MaxBufferSize": 70,
-            "IdleEnergyCoef": 0.0021,
-            "ExeEnergyCoef": 0.0215,
-            "Latency": 0.0043
+            "MaxCpuFreq": 1500,
+            "MaxBufferSize": 320,
+            "IdleEnergyCoef": 0.0013,
+            "ExeEnergyCoef": 0.0133
         },
         {
             "NodeType": "Node",
             "NodeName": "n43",
             "NodeId": 43,
-            "MaxCpuFreq": 2700,
-            "MaxBufferSize": 140,
-            "IdleEnergyCoef": 0.0031,
-            "ExeEnergyCoef": 0.0312,
-            "Latency": 0.0007
+            "MaxCpuFreq": 3200,
+            "MaxBufferSize": 370,
+            "IdleEnergyCoef": 0.0037,
+            "ExeEnergyCoef": 0.037
         },
         {
             "NodeType": "Node",
             "NodeName": "n44",
             "NodeId": 44,
-            "MaxCpuFreq": 2900,
+            "MaxCpuFreq": 1800,
             "MaxBufferSize": 380,
             "IdleEnergyCoef": 0.001,
-            "ExeEnergyCoef": 0.01,
-            "Latency": 0.0016
+            "ExeEnergyCoef": 0.01
         },
         {
             "NodeType": "Node",
             "NodeName": "n45",
             "NodeId": 45,
-            "MaxCpuFreq": 2200,
-            "MaxBufferSize": 260,
-            "IdleEnergyCoef": 0.0058,
-            "ExeEnergyCoef": 0.0581,
-            "Latency": 0.0022
+            "MaxCpuFreq": 2900,
+            "MaxBufferSize": 370,
+            "IdleEnergyCoef": 0.0097,
+            "ExeEnergyCoef": 0.0968
         },
         {
             "NodeType": "Node",
             "NodeName": "n46",
             "NodeId": 46,
-            "MaxCpuFreq": 1900,
-            "MaxBufferSize": 340,
-            "IdleEnergyCoef": 0.0055,
-            "ExeEnergyCoef": 0.0548,
-            "Latency": 0.0026
+            "MaxCpuFreq": 2300,
+            "MaxBufferSize": 330,
+            "IdleEnergyCoef": 0.0021,
+            "ExeEnergyCoef": 0.0213
         },
         {
             "NodeType": "Node",
             "NodeName": "n47",
             "NodeId": 47,
-            "MaxCpuFreq": 3500,
-            "MaxBufferSize": 280,
-            "IdleEnergyCoef": 0.009,
-            "ExeEnergyCoef": 0.0903,
-            "Latency": 0.0032
+            "MaxCpuFreq": 1900,
+            "MaxBufferSize": 240,
+            "IdleEnergyCoef": 0.001,
+            "ExeEnergyCoef": 0.01
         },
         {
             "NodeType": "Node",
             "NodeName": "n48",
             "NodeId": 48,
-            "MaxCpuFreq": 4200,
-            "MaxBufferSize": 160,
-            "IdleEnergyCoef": 0.0052,
-            "ExeEnergyCoef": 0.0516,
-            "Latency": 0.0044
+            "MaxCpuFreq": 1900,
+            "MaxBufferSize": 140,
+            "IdleEnergyCoef": 0.0027,
+            "ExeEnergyCoef": 0.0274
         },
         {
             "NodeType": "Node",
             "NodeName": "n49",
             "NodeId": 49,
-            "MaxCpuFreq": 4600,
-            "MaxBufferSize": 70,
-            "IdleEnergyCoef": 0.0023,
-            "ExeEnergyCoef": 0.0229,
-            "Latency": 0.0004
+            "MaxCpuFreq": 1400,
+            "MaxBufferSize": 240,
+            "IdleEnergyCoef": 0.001,
+            "ExeEnergyCoef": 0.01
         }
     ],
     "Edges": [
@@ -506,601 +456,701 @@
             "EdgeType": "SingleLink",
             "SrcNodeID": 0,
             "DstNodeID": 37,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0033
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 1,
             "DstNodeID": 47,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0031
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 2,
             "DstNodeID": 34,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0012
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 2,
             "DstNodeID": 36,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0048
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 2,
             "DstNodeID": 47,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0018
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 3,
             "DstNodeID": 24,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0033
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 3,
             "DstNodeID": 28,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0028
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 3,
             "DstNodeID": 40,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0032
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 3,
             "DstNodeID": 46,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0036
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 4,
             "DstNodeID": 45,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0016
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 5,
             "DstNodeID": 31,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0031
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 6,
             "DstNodeID": 7,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0046
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 6,
             "DstNodeID": 30,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0036
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 6,
             "DstNodeID": 39,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0035
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 7,
             "DstNodeID": 6,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0046
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 7,
             "DstNodeID": 21,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0036
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 7,
             "DstNodeID": 40,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0031
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 8,
             "DstNodeID": 11,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0036
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 8,
             "DstNodeID": 15,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0049
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 8,
             "DstNodeID": 16,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0017
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 8,
             "DstNodeID": 37,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0015
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 9,
             "DstNodeID": 22,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0025
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 9,
             "DstNodeID": 43,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0033
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 9,
             "DstNodeID": 44,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0012
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 10,
             "DstNodeID": 23,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0041
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 10,
             "DstNodeID": 35,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0015
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 11,
             "DstNodeID": 8,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0036
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 11,
             "DstNodeID": 47,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.001
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 12,
             "DstNodeID": 24,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0027
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 12,
             "DstNodeID": 46,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0038
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 13,
             "DstNodeID": 26,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0026
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 13,
             "DstNodeID": 48,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0039
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 14,
             "DstNodeID": 42,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0018
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 15,
             "DstNodeID": 8,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0049
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 15,
             "DstNodeID": 31,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0041
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 15,
             "DstNodeID": 33,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0044
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 16,
             "DstNodeID": 8,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0017
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 17,
             "DstNodeID": 29,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0035
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 18,
             "DstNodeID": 25,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0011
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 19,
             "DstNodeID": 27,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0036
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 20,
             "DstNodeID": 32,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0039
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 20,
             "DstNodeID": 45,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0016
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 20,
             "DstNodeID": 49,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0047
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 21,
             "DstNodeID": 7,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0036
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 22,
             "DstNodeID": 9,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0025
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 22,
             "DstNodeID": 24,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0045
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 23,
             "DstNodeID": 10,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0041
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 24,
             "DstNodeID": 3,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0033
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 24,
             "DstNodeID": 12,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0027
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 24,
             "DstNodeID": 22,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0045
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 24,
             "DstNodeID": 32,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0042
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 24,
             "DstNodeID": 35,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0012
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 24,
             "DstNodeID": 37,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0038
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 24,
             "DstNodeID": 41,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.003
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 25,
             "DstNodeID": 18,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0011
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 25,
             "DstNodeID": 40,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0018
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 26,
             "DstNodeID": 13,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0026
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 27,
             "DstNodeID": 19,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0036
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 27,
             "DstNodeID": 31,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0022
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 27,
             "DstNodeID": 38,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0014
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 27,
             "DstNodeID": 42,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0049
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 28,
             "DstNodeID": 3,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0028
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 29,
             "DstNodeID": 17,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0035
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 29,
             "DstNodeID": 40,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0033
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 30,
             "DstNodeID": 6,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0036
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 31,
             "DstNodeID": 5,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0031
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 31,
             "DstNodeID": 15,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0041
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 31,
             "DstNodeID": 27,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0022
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 32,
             "DstNodeID": 20,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0039
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 32,
             "DstNodeID": 24,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0042
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 33,
             "DstNodeID": 15,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0044
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 34,
             "DstNodeID": 2,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0012
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 35,
             "DstNodeID": 10,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0015
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 35,
             "DstNodeID": 24,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0012
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 36,
             "DstNodeID": 2,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0048
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 37,
             "DstNodeID": 0,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0033
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 37,
             "DstNodeID": 8,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0015
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 37,
             "DstNodeID": 24,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0038
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 38,
             "DstNodeID": 27,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0014
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 39,
             "DstNodeID": 6,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0035
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 40,
             "DstNodeID": 3,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0032
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 40,
             "DstNodeID": 7,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0031
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 40,
             "DstNodeID": 25,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0018
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 40,
             "DstNodeID": 29,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0033
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 41,
             "DstNodeID": 24,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.003
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 42,
             "DstNodeID": 14,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0018
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 42,
             "DstNodeID": 27,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0049
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 43,
             "DstNodeID": 9,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0033
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 44,
             "DstNodeID": 9,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0012
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 45,
             "DstNodeID": 4,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0016
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 45,
             "DstNodeID": 20,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0016
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 46,
             "DstNodeID": 3,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0036
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 46,
             "DstNodeID": 12,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0038
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 46,
             "DstNodeID": 48,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0023
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 47,
             "DstNodeID": 1,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0031
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 47,
             "DstNodeID": 2,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0018
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 47,
             "DstNodeID": 11,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.001
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 48,
             "DstNodeID": 13,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0039
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 48,
             "DstNodeID": 46,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0023
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 49,
             "DstNodeID": 20,
-            "Bandwidth": 1000.0
+            "Bandwidth": 1000.0,
+            "Latency": 0.0047
         }
     ]
 }

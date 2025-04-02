@@ -7,6 +7,7 @@ def generate_configs(scenario, nodes_num):
     Generate configuration files for the given scenario and number of nodes.
     :param scenario: Scenario name (e.g., '25N50E', '50N50E', '100N150E', 'MilanCityCenter').
     :param nodes_num: Number of nodes in the scenario.
+    :param nodes_num: Number of nodes in the scenario.
     :return: None
     """
    
@@ -26,7 +27,7 @@ def generate_configs(scenario, nodes_num):
     for node_id in range(nodes_num):
         idle_energy_coef = max(0.01 * random.random(), 0.001)
         exe_energy_coef = 10 * idle_energy_coef
-        param_Latency = (0, 0.005)  # s
+        # param_Latency = (0, 0.005)  # s
 
         nodes.append(
             {
@@ -37,20 +38,30 @@ def generate_configs(scenario, nodes_num):
                 'MaxBufferSize': random.randint(5, 40) * 10,  # Mb
                 'IdleEnergyCoef': round(idle_energy_coef, 4),
                 'ExeEnergyCoef': round(exe_energy_coef, 4),
-                'Latency': round(random.uniform(*param_Latency), 4),  # s
+                # 'Latency': round(random.uniform(*param_Latency), 4),  # s
             }
         )
 
     edges = []
+    temp_edges_dict = {}
     for src, dst, bw in edges_lines:
+        if (src, dst) in temp_edges_dict:
+            lay = temp_edges_dict[(src, dst)]
+        else:
+            lay = round(random.uniform(0.001, 0.005), 4)  # s
+            temp_edges_dict[(src, dst)] = lay
+            temp_edges_dict[(dst, src)] = lay
+
         edges.append(
             {
                 'EdgeType': 'SingleLink', 
                 'SrcNodeID': src,
                 'DstNodeID': dst, 
                 'Bandwidth': 10 * bw,  # Mbps
+                'Latency': lay,
             }
         )
+
 
     # Save the generated configurations to a JSON file.
     data = {
