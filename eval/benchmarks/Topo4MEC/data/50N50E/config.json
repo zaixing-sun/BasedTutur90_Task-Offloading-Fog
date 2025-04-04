@@ -457,700 +457,700 @@
             "SrcNodeID": 0,
             "DstNodeID": 37,
             "Bandwidth": 1000.0,
-            "Latency": 0.0033
+            "BaseLatency": 0.0033
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 1,
             "DstNodeID": 47,
             "Bandwidth": 1000.0,
-            "Latency": 0.0031
+            "BaseLatency": 0.0031
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 2,
             "DstNodeID": 34,
             "Bandwidth": 1000.0,
-            "Latency": 0.0012
+            "BaseLatency": 0.0012
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 2,
             "DstNodeID": 36,
             "Bandwidth": 1000.0,
-            "Latency": 0.0048
+            "BaseLatency": 0.0048
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 2,
             "DstNodeID": 47,
             "Bandwidth": 1000.0,
-            "Latency": 0.0018
+            "BaseLatency": 0.0018
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 3,
             "DstNodeID": 24,
             "Bandwidth": 1000.0,
-            "Latency": 0.0033
+            "BaseLatency": 0.0033
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 3,
             "DstNodeID": 28,
             "Bandwidth": 1000.0,
-            "Latency": 0.0028
+            "BaseLatency": 0.0028
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 3,
             "DstNodeID": 40,
             "Bandwidth": 1000.0,
-            "Latency": 0.0032
+            "BaseLatency": 0.0032
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 3,
             "DstNodeID": 46,
             "Bandwidth": 1000.0,
-            "Latency": 0.0036
+            "BaseLatency": 0.0036
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 4,
             "DstNodeID": 45,
             "Bandwidth": 1000.0,
-            "Latency": 0.0016
+            "BaseLatency": 0.0016
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 5,
             "DstNodeID": 31,
             "Bandwidth": 1000.0,
-            "Latency": 0.0031
+            "BaseLatency": 0.0031
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 6,
             "DstNodeID": 7,
             "Bandwidth": 1000.0,
-            "Latency": 0.0046
+            "BaseLatency": 0.0046
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 6,
             "DstNodeID": 30,
             "Bandwidth": 1000.0,
-            "Latency": 0.0036
+            "BaseLatency": 0.0036
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 6,
             "DstNodeID": 39,
             "Bandwidth": 1000.0,
-            "Latency": 0.0035
+            "BaseLatency": 0.0035
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 7,
             "DstNodeID": 6,
             "Bandwidth": 1000.0,
-            "Latency": 0.0046
+            "BaseLatency": 0.0046
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 7,
             "DstNodeID": 21,
             "Bandwidth": 1000.0,
-            "Latency": 0.0036
+            "BaseLatency": 0.0036
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 7,
             "DstNodeID": 40,
             "Bandwidth": 1000.0,
-            "Latency": 0.0031
+            "BaseLatency": 0.0031
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 8,
             "DstNodeID": 11,
             "Bandwidth": 1000.0,
-            "Latency": 0.0036
+            "BaseLatency": 0.0036
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 8,
             "DstNodeID": 15,
             "Bandwidth": 1000.0,
-            "Latency": 0.0049
+            "BaseLatency": 0.0049
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 8,
             "DstNodeID": 16,
             "Bandwidth": 1000.0,
-            "Latency": 0.0017
+            "BaseLatency": 0.0017
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 8,
             "DstNodeID": 37,
             "Bandwidth": 1000.0,
-            "Latency": 0.0015
+            "BaseLatency": 0.0015
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 9,
             "DstNodeID": 22,
             "Bandwidth": 1000.0,
-            "Latency": 0.0025
+            "BaseLatency": 0.0025
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 9,
             "DstNodeID": 43,
             "Bandwidth": 1000.0,
-            "Latency": 0.0033
+            "BaseLatency": 0.0033
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 9,
             "DstNodeID": 44,
             "Bandwidth": 1000.0,
-            "Latency": 0.0012
+            "BaseLatency": 0.0012
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 10,
             "DstNodeID": 23,
             "Bandwidth": 1000.0,
-            "Latency": 0.0041
+            "BaseLatency": 0.0041
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 10,
             "DstNodeID": 35,
             "Bandwidth": 1000.0,
-            "Latency": 0.0015
+            "BaseLatency": 0.0015
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 11,
             "DstNodeID": 8,
             "Bandwidth": 1000.0,
-            "Latency": 0.0036
+            "BaseLatency": 0.0036
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 11,
             "DstNodeID": 47,
             "Bandwidth": 1000.0,
-            "Latency": 0.001
+            "BaseLatency": 0.001
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 12,
             "DstNodeID": 24,
             "Bandwidth": 1000.0,
-            "Latency": 0.0027
+            "BaseLatency": 0.0027
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 12,
             "DstNodeID": 46,
             "Bandwidth": 1000.0,
-            "Latency": 0.0038
+            "BaseLatency": 0.0038
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 13,
             "DstNodeID": 26,
             "Bandwidth": 1000.0,
-            "Latency": 0.0026
+            "BaseLatency": 0.0026
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 13,
             "DstNodeID": 48,
             "Bandwidth": 1000.0,
-            "Latency": 0.0039
+            "BaseLatency": 0.0039
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 14,
             "DstNodeID": 42,
             "Bandwidth": 1000.0,
-            "Latency": 0.0018
+            "BaseLatency": 0.0018
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 15,
             "DstNodeID": 8,
             "Bandwidth": 1000.0,
-            "Latency": 0.0049
+            "BaseLatency": 0.0049
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 15,
             "DstNodeID": 31,
             "Bandwidth": 1000.0,
-            "Latency": 0.0041
+            "BaseLatency": 0.0041
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 15,
             "DstNodeID": 33,
             "Bandwidth": 1000.0,
-            "Latency": 0.0044
+            "BaseLatency": 0.0044
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 16,
             "DstNodeID": 8,
             "Bandwidth": 1000.0,
-            "Latency": 0.0017
+            "BaseLatency": 0.0017
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 17,
             "DstNodeID": 29,
             "Bandwidth": 1000.0,
-            "Latency": 0.0035
+            "BaseLatency": 0.0035
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 18,
             "DstNodeID": 25,
             "Bandwidth": 1000.0,
-            "Latency": 0.0011
+            "BaseLatency": 0.0011
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 19,
             "DstNodeID": 27,
             "Bandwidth": 1000.0,
-            "Latency": 0.0036
+            "BaseLatency": 0.0036
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 20,
             "DstNodeID": 32,
             "Bandwidth": 1000.0,
-            "Latency": 0.0039
+            "BaseLatency": 0.0039
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 20,
             "DstNodeID": 45,
             "Bandwidth": 1000.0,
-            "Latency": 0.0016
+            "BaseLatency": 0.0016
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 20,
             "DstNodeID": 49,
             "Bandwidth": 1000.0,
-            "Latency": 0.0047
+            "BaseLatency": 0.0047
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 21,
             "DstNodeID": 7,
             "Bandwidth": 1000.0,
-            "Latency": 0.0036
+            "BaseLatency": 0.0036
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 22,
             "DstNodeID": 9,
             "Bandwidth": 1000.0,
-            "Latency": 0.0025
+            "BaseLatency": 0.0025
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 22,
             "DstNodeID": 24,
             "Bandwidth": 1000.0,
-            "Latency": 0.0045
+            "BaseLatency": 0.0045
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 23,
             "DstNodeID": 10,
             "Bandwidth": 1000.0,
-            "Latency": 0.0041
+            "BaseLatency": 0.0041
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 24,
             "DstNodeID": 3,
             "Bandwidth": 1000.0,
-            "Latency": 0.0033
+            "BaseLatency": 0.0033
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 24,
             "DstNodeID": 12,
             "Bandwidth": 1000.0,
-            "Latency": 0.0027
+            "BaseLatency": 0.0027
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 24,
             "DstNodeID": 22,
             "Bandwidth": 1000.0,
-            "Latency": 0.0045
+            "BaseLatency": 0.0045
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 24,
             "DstNodeID": 32,
             "Bandwidth": 1000.0,
-            "Latency": 0.0042
+            "BaseLatency": 0.0042
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 24,
             "DstNodeID": 35,
             "Bandwidth": 1000.0,
-            "Latency": 0.0012
+            "BaseLatency": 0.0012
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 24,
             "DstNodeID": 37,
             "Bandwidth": 1000.0,
-            "Latency": 0.0038
+            "BaseLatency": 0.0038
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 24,
             "DstNodeID": 41,
             "Bandwidth": 1000.0,
-            "Latency": 0.003
+            "BaseLatency": 0.003
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 25,
             "DstNodeID": 18,
             "Bandwidth": 1000.0,
-            "Latency": 0.0011
+            "BaseLatency": 0.0011
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 25,
             "DstNodeID": 40,
             "Bandwidth": 1000.0,
-            "Latency": 0.0018
+            "BaseLatency": 0.0018
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 26,
             "DstNodeID": 13,
             "Bandwidth": 1000.0,
-            "Latency": 0.0026
+            "BaseLatency": 0.0026
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 27,
             "DstNodeID": 19,
             "Bandwidth": 1000.0,
-            "Latency": 0.0036
+            "BaseLatency": 0.0036
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 27,
             "DstNodeID": 31,
             "Bandwidth": 1000.0,
-            "Latency": 0.0022
+            "BaseLatency": 0.0022
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 27,
             "DstNodeID": 38,
             "Bandwidth": 1000.0,
-            "Latency": 0.0014
+            "BaseLatency": 0.0014
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 27,
             "DstNodeID": 42,
             "Bandwidth": 1000.0,
-            "Latency": 0.0049
+            "BaseLatency": 0.0049
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 28,
             "DstNodeID": 3,
             "Bandwidth": 1000.0,
-            "Latency": 0.0028
+            "BaseLatency": 0.0028
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 29,
             "DstNodeID": 17,
             "Bandwidth": 1000.0,
-            "Latency": 0.0035
+            "BaseLatency": 0.0035
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 29,
             "DstNodeID": 40,
             "Bandwidth": 1000.0,
-            "Latency": 0.0033
+            "BaseLatency": 0.0033
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 30,
             "DstNodeID": 6,
             "Bandwidth": 1000.0,
-            "Latency": 0.0036
+            "BaseLatency": 0.0036
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 31,
             "DstNodeID": 5,
             "Bandwidth": 1000.0,
-            "Latency": 0.0031
+            "BaseLatency": 0.0031
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 31,
             "DstNodeID": 15,
             "Bandwidth": 1000.0,
-            "Latency": 0.0041
+            "BaseLatency": 0.0041
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 31,
             "DstNodeID": 27,
             "Bandwidth": 1000.0,
-            "Latency": 0.0022
+            "BaseLatency": 0.0022
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 32,
             "DstNodeID": 20,
             "Bandwidth": 1000.0,
-            "Latency": 0.0039
+            "BaseLatency": 0.0039
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 32,
             "DstNodeID": 24,
             "Bandwidth": 1000.0,
-            "Latency": 0.0042
+            "BaseLatency": 0.0042
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 33,
             "DstNodeID": 15,
             "Bandwidth": 1000.0,
-            "Latency": 0.0044
+            "BaseLatency": 0.0044
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 34,
             "DstNodeID": 2,
             "Bandwidth": 1000.0,
-            "Latency": 0.0012
+            "BaseLatency": 0.0012
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 35,
             "DstNodeID": 10,
             "Bandwidth": 1000.0,
-            "Latency": 0.0015
+            "BaseLatency": 0.0015
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 35,
             "DstNodeID": 24,
             "Bandwidth": 1000.0,
-            "Latency": 0.0012
+            "BaseLatency": 0.0012
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 36,
             "DstNodeID": 2,
             "Bandwidth": 1000.0,
-            "Latency": 0.0048
+            "BaseLatency": 0.0048
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 37,
             "DstNodeID": 0,
             "Bandwidth": 1000.0,
-            "Latency": 0.0033
+            "BaseLatency": 0.0033
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 37,
             "DstNodeID": 8,
             "Bandwidth": 1000.0,
-            "Latency": 0.0015
+            "BaseLatency": 0.0015
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 37,
             "DstNodeID": 24,
             "Bandwidth": 1000.0,
-            "Latency": 0.0038
+            "BaseLatency": 0.0038
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 38,
             "DstNodeID": 27,
             "Bandwidth": 1000.0,
-            "Latency": 0.0014
+            "BaseLatency": 0.0014
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 39,
             "DstNodeID": 6,
             "Bandwidth": 1000.0,
-            "Latency": 0.0035
+            "BaseLatency": 0.0035
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 40,
             "DstNodeID": 3,
             "Bandwidth": 1000.0,
-            "Latency": 0.0032
+            "BaseLatency": 0.0032
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 40,
             "DstNodeID": 7,
             "Bandwidth": 1000.0,
-            "Latency": 0.0031
+            "BaseLatency": 0.0031
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 40,
             "DstNodeID": 25,
             "Bandwidth": 1000.0,
-            "Latency": 0.0018
+            "BaseLatency": 0.0018
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 40,
             "DstNodeID": 29,
             "Bandwidth": 1000.0,
-            "Latency": 0.0033
+            "BaseLatency": 0.0033
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 41,
             "DstNodeID": 24,
             "Bandwidth": 1000.0,
-            "Latency": 0.003
+            "BaseLatency": 0.003
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 42,
             "DstNodeID": 14,
             "Bandwidth": 1000.0,
-            "Latency": 0.0018
+            "BaseLatency": 0.0018
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 42,
             "DstNodeID": 27,
             "Bandwidth": 1000.0,
-            "Latency": 0.0049
+            "BaseLatency": 0.0049
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 43,
             "DstNodeID": 9,
             "Bandwidth": 1000.0,
-            "Latency": 0.0033
+            "BaseLatency": 0.0033
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 44,
             "DstNodeID": 9,
             "Bandwidth": 1000.0,
-            "Latency": 0.0012
+            "BaseLatency": 0.0012
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 45,
             "DstNodeID": 4,
             "Bandwidth": 1000.0,
-            "Latency": 0.0016
+            "BaseLatency": 0.0016
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 45,
             "DstNodeID": 20,
             "Bandwidth": 1000.0,
-            "Latency": 0.0016
+            "BaseLatency": 0.0016
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 46,
             "DstNodeID": 3,
             "Bandwidth": 1000.0,
-            "Latency": 0.0036
+            "BaseLatency": 0.0036
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 46,
             "DstNodeID": 12,
             "Bandwidth": 1000.0,
-            "Latency": 0.0038
+            "BaseLatency": 0.0038
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 46,
             "DstNodeID": 48,
             "Bandwidth": 1000.0,
-            "Latency": 0.0023
+            "BaseLatency": 0.0023
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 47,
             "DstNodeID": 1,
             "Bandwidth": 1000.0,
-            "Latency": 0.0031
+            "BaseLatency": 0.0031
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 47,
             "DstNodeID": 2,
             "Bandwidth": 1000.0,
-            "Latency": 0.0018
+            "BaseLatency": 0.0018
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 47,
             "DstNodeID": 11,
             "Bandwidth": 1000.0,
-            "Latency": 0.001
+            "BaseLatency": 0.001
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 48,
             "DstNodeID": 13,
             "Bandwidth": 1000.0,
-            "Latency": 0.0039
+            "BaseLatency": 0.0039
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 48,
             "DstNodeID": 46,
             "Bandwidth": 1000.0,
-            "Latency": 0.0023
+            "BaseLatency": 0.0023
         },
         {
             "EdgeType": "SingleLink",
             "SrcNodeID": 49,
             "DstNodeID": 20,
             "Bandwidth": 1000.0,
-            "Latency": 0.0047
+            "BaseLatency": 0.0047
         }
     ]
 }

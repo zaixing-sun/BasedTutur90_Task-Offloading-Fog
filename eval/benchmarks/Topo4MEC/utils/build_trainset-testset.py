@@ -45,7 +45,7 @@ def generate_tasks(num_arrivals_per_ingress, lambda_, ingress_line, param_TaskSi
                 tasks.append(
                     [
                         f't{0}', # TaskName (invalid)
-                        np.round(arrival_time),  # arrival_time, #    # GenerationTime 
+                        np.round(arrival_time+1),  # arrival_time, #    # GenerationTime 
                         0,  # TaskID (invalid)
                         np.random.randint(*param_TaskSize),  # TaskSize
                         np.random.randint(*param_CyclesPerBit),  # CyclesPerBit
@@ -103,6 +103,11 @@ def main():
     # 1. parameters
     header = ['TaskName', 'GenerationTime', 'TaskID', 'TaskSize', 'CyclesPerBit', 
               'TransBitRate', 'DDL', 'SrcName']  # field names
+    
+    '''
+    [1] Fan W. Blockchain-Secured Task Offloading and Resource Allocation for Cloud-Edge-End Cooperative Networks[J]. IEEE Transactions on Mobile Computing, 2024, 23(8): 8092–8110.
+    [1] Fan W, Zhao L, Liu X, Su Y, Li S, Wu F, Liu Y. Collaborative Service Placement, Task Scheduling, and Resource Allocation for Task Offloading with Edge-Cloud Cooperation[J]. IEEE Transactions on Mobile Computing, 2024, 23(1): 238–256.
+    '''
     param_TaskSize = (10, 100 + 1)  # Mb
     param_CyclesPerBit = (100, 1000 + 1)  # per-MBit
     param_TransBitRate = (1, 5)  # Mbps

@@ -58,7 +58,7 @@ def generate_configs(scenario, nodes_num):
                 'SrcNodeID': src,
                 'DstNodeID': dst, 
                 'Bandwidth': 10 * bw,  # Mbps
-                'Latency': lay,
+                'BaseLatency': lay,
             }
         )
 

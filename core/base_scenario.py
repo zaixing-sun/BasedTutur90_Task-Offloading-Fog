@@ -22,7 +22,7 @@ class BaseScenario(metaclass=ABCMeta):
 
         # Signal speed and hop delay constants
         self.signal_speed = 2.0e5 - 1.5e5 # Signal speed in fiber (km/s) - Hop delay + Router delay
-        self.base_energy_coef = 0.8/10000 # Energy coefficient for the link (J/mb/km)
+        self.base_energy_coef = 0.8/100 # Energy coefficient for the link (J/mb/km)
 
         # Initialize infrastructure with nodes and links
         self.init_infrastructure_nodes()
@@ -116,12 +116,13 @@ class BaseScenario(metaclass=ABCMeta):
             return round(distance / self.signal_speed, 3)
         
         return 0
+    
     def calculate_energy_coef(
         self, edge_info: dict, src_node_id: int, dst_node_id: int, nodes: dict
     ) -> float:
         """Calculate the base latency for the link, either from config or based on node distances."""
         if 'BaseLatency' in edge_info:
-            return edge_info['EnergyCoef']
+            return  self.base_energy_coef #  edge_info['BaseLatency']   # edge_info['EnergyCoef']
         
         src_node = nodes[self.node_id2name[src_node_id]]
         dst_node = nodes[self.node_id2name[dst_node_id]]
