@@ -20,7 +20,7 @@ The following modules are used for visualization tools:
 Users are recommended to use the Anaconda to configure the RayCloudSim:
 
 ```text
-conda create --name raycloudsim python=3.8
+conda create --name raycloudsim python=3.10
 conda activate raycloudsim
 pip install -r requirements.txt
 ```

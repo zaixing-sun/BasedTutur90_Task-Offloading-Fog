@@ -10,7 +10,8 @@ import textwrap
 from tqdm import tqdm
 
 
-mpl.use('QtAgg')
+mpl.use('Agg') 
+# mpl.use('QtAgg')
 
 
 colors = {
