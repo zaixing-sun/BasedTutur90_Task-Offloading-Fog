@@ -480,8 +480,7 @@ class Env:
         # Record simulation completion
         self.logger.log("Simulation completed!")
 
-
-class Env_Zaixing:
+class Env:
     """Simulation environment."""
 
     def __init__(self, scenario: BaseScenario, config_file: str, verbose: bool = True, 
