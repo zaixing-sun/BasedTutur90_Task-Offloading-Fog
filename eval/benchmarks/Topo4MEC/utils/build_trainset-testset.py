@@ -45,7 +45,7 @@ def generate_tasks(num_arrivals_per_ingress, lambda_, ingress_line, param_TaskSi
                 tasks.append(
                     [
                         f't{0}', # TaskName (invalid)
-                        np.round(arrival_time+1),  # arrival_time, #    # GenerationTime 
+                        np.round(arrival_time+1,2),  # arrival_time, #    # GenerationTime 
                         0,  # TaskID (invalid)
                         np.random.randint(*param_TaskSize),  # TaskSize
                         np.random.randint(*param_CyclesPerBit),  # CyclesPerBit
