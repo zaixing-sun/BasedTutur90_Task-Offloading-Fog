@@ -60,6 +60,10 @@ def task_submit_process(env, test_tasks, policy, done_event):
                     src_name=task_info[7],
                     task_name=task_info[0])
         task.generated_time = task_info[1]
+        task.category = task_info[8]
+        task.min_cpu_freq = task_info[9]
+        task.max_cpu_freq = task_info[10]
+        
         wait = generated_time - env.now
         if wait > 0:
             yield env.controller.timeout(wait)

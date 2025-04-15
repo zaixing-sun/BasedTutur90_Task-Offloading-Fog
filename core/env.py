@@ -749,12 +749,62 @@ class Env_Zaixing:
                 # 【修改结束】
 
         if flag_reactive:  # 任务来自等待队列
+            try:
+                task.allocate(self.now)
+                self.logger.log(f"Task {{{task.task_id}}} re-actives in Node {{{task.dst_name}}}, "
+                                f"waiting {{{(task.wait_time):.{self.decimal_places}f}}}s")
+            except EnvironmentError as e:
+                # 若CPU 频率不足，进行以下修改
+                self.logger.log(f"Cannot reserve enough resources on Node {{{dst.name}}}, attempting reallocation.")
+                # 【修改开始】
+                task.new_src_name = task.dst_name
+                # task.deallocate()
+                task.dst, task.dst_id, task.dst_name = None, None, None
+                alternative_nodes = self.policy.priority_list(self, task)  # 生成优先级节点列表
+                allocated = False
+                for alt_dst_id in alternative_nodes:
+                    alt_dst = self.scenario.get_node(self.scenario.node_id2name[alt_dst_id])
+                    if alt_dst.task_buffer.free_size >= task.task_size:
+                        # self.logger.log(f"Task {task.task_id} reallocating to Node {alt_dst.name}")
+                        self.controller.process(self._execute_task(task, alt_dst.name))
+                        allocated = True
+                        break
+                if not allocated:
+                    # 放入全局缓冲区，记录初始目标节点
+                    self.global_buffer.append((task, dst.name))
 
-            task.allocate(self.now)
-            self.logger.log(f"Task {{{task.task_id}}} re-actives in Node {{{task.dst_name}}}, "
-                            f"waiting {{{(task.wait_time):.{self.decimal_places}f}}}s")
+                    self.logger.log(f"Task {{{task.task_id}}} added to global buffer, original dst {{{dst.name}}}")
+                return
+                # 【修改结束】
+
         else:
-            task.allocate(self.now, dst)
+            try:
+                task.allocate(self.now, dst)
+            except EnvironmentError as e:
+                # 若CPU 频率不足，进行以下修改
+                self.logger.log(f"Cannot reserve enough resources on Node {{{dst.name}}}, attempting reallocation.")
+                # 【修改开始】
+                task.new_src_name = task.dst_name
+                # task.deallocate()
+                task.dst, task.dst_id, task.dst_name = None, None, None
+                alternative_nodes = self.policy.priority_list(self, task)  # 生成优先级节点列表
+                allocated = False
+                for alt_dst_id in alternative_nodes:
+                    alt_dst = self.scenario.get_node(self.scenario.node_id2name[alt_dst_id])
+                    if alt_dst.task_buffer.free_size >= task.task_size:
+                        # self.logger.log(f"Task {task.task_id} reallocating to Node {alt_dst.name}")
+                        self.controller.process(self._execute_task(task, alt_dst.name))
+                        allocated = True
+                        break
+                if not allocated:
+                    # 放入全局缓冲区，记录初始目标节点
+                    self.global_buffer.append((task, dst.name))
+
+                    self.logger.log(f"Task {{{task.task_id}}} added to global buffer, original dst {{{dst.name}}}")
+                return
+                # 【修改结束】
+
+
 
         self.active_tasks[task.task_id] = task
         try:

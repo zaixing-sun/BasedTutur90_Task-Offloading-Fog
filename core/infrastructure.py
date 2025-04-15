@@ -287,18 +287,35 @@ class Node(object):
 
     def _reserve_resource(self, task: "Task"):
         """Reserve CPU resources for the task."""
-        if self.free_cpu_freq > 0:
+        # if self.free_cpu_freq > 0:
+        #     task.cpu_freq = self.free_cpu_freq
+        #     self.free_cpu_freq = 0
+        # else:
+        #     raise ValueError(f"Cannot reserve enough resources on compute node {self}.")
+        if self.free_cpu_freq < task.min_cpu_freq:
+            raise EnvironmentError(f"Cannot reserve enough resources on compute node {self}.")
+        
+        if task.category == 0:              # 固定频率，超出无效
+            task.cpu_freq = task.min_cpu_freq
+        elif task.category == 1:             # 越多越快
             task.cpu_freq = self.free_cpu_freq
-            self.free_cpu_freq = 0
+        elif task.category == 2:             # 有限上限
+            task.cpu_freq = min(self.free_cpu_freq, task.max_cpu_freq)
         else:
-            raise ValueError(f"Cannot reserve enough resources on compute node {self}.")
-
+            raise EnvironmentError(f"Unknown task category {task.category}")
+        self.free_cpu_freq -= task.cpu_freq
+        if self.free_cpu_freq < 0:
+            raise EnvironmentError(f"CPU frequency overflow in Node {self.name} during task allocation.")
+            
     def _release_resource(self, task: "Task"):
         """Release CPU resources from the task."""
-        if self.free_cpu_freq == 0:
-            self.free_cpu_freq = self.max_cpu_freq
-        else:
-            raise ValueError(f"Cannot release enough resources on compute node {self}.")
+        # if self.free_cpu_freq == 0:
+        #     self.free_cpu_freq = self.max_cpu_freq
+        # else:
+        #     raise ValueError(f"Cannot release enough resources on compute node {self}.")
+        self.free_cpu_freq += task.cpu_freq
+        if self.free_cpu_freq > self.max_cpu_freq:
+            raise ValueError(f"CPU frequency overflow in Node {self.name} during task release.")
     
     def reset(self):
         """Reset the node to its initial state."""

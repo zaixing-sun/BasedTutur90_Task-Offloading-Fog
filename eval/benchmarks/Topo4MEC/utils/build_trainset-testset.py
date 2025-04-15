@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 
 
-def generate_tasks(num_arrivals_per_ingress, lambda_, ingress_line, param_TaskSize, param_CyclesPerBit, param_TransBitRate, param_DDL):
+def generate_tasks(num_arrivals_per_ingress, lambda_, ingress_line):
     """
     Generate synthetic tasks based on the given parameters.
     
@@ -15,6 +15,9 @@ def generate_tasks(num_arrivals_per_ingress, lambda_, ingress_line, param_TaskSi
     :param param_CyclesPerBit: Tuple of min and max cycles per bit
     :param param_TransBitRate: Tuple of min and max transmission bit rate           
     :param param_DDL: Tuple of min and max deadline
+    :param parm_Category: Tuple of categories
+    :param param_min_cpu_freq: Tuple of min CPU frequency
+    :param param_max_cpu_freq: Tuple of max CPU frequency
     :return: List of generated tasks
     """
     tasks = []
@@ -44,16 +47,26 @@ def generate_tasks(num_arrivals_per_ingress, lambda_, ingress_line, param_TaskSi
             for _ in range(numWF):
                 tasks.append(
                     [
-                        f't{0}', # TaskName (invalid)
-                        np.round(arrival_time+1,2),  # arrival_time, #    # GenerationTime 
-                        0,  # TaskID (invalid)
-                        np.random.randint(*param_TaskSize),  # TaskSize
-                        np.random.randint(*param_CyclesPerBit),  # CyclesPerBit
-                        10 * np.random.randint(*param_TransBitRate),  # TransBitRate
-                        np.random.randint(*param_DDL),  # DDL
-                        f'n{node_id}',  # SrcName
-                    ]
-                )
+                        f't{0}', # TaskName (invalid)                                       # 0
+                        np.round(arrival_time+1,2),  # arrival_time, #    # GenerationTime  # 1
+                        0,  # TaskID (invalid)                                              # 2     
+                        np.random.randint(*param_TaskSize),  # TaskSize                     # 3
+                        np.random.randint(*param_CyclesPerBit),  # CyclesPerBit             # 4
+                        10 * np.random.randint(*param_TransBitRate),  # TransBitRate        # 5
+                        np.random.uniform(*param_DDL),  # DDL                               # 6
+                        f'n{node_id}',  # SrcName                                           # 7
+                        np.random.choice(param_Category),  # Category                       # 8
+                        np.random.randint(*param_min_cpu_freq),  # min_cpu_freq             # 9
+                        np.random.randint(*param_max_cpu_freq),  # max_cpu_freq             # 10
+                    ]                    
+                )                
+                if tasks[-1][8] == 0:
+                    freq = int( (tasks[-1][9]+tasks[-1][10])/2 )
+                    tasks[-1][9] = freq
+                    tasks[-1][10] = freq
+                if tasks[-1][8] == 1:
+                    tasks[-1][10] = np.inf
+                tasks[-1][6] = int(tasks[-1][6] * tasks[-1][3] * tasks[-1][4] / tasks[-1][9])  # DDL = TransTime + ExeTime
     ordered_tasks = sorted(tasks, key=lambda x: x[1])
     for i, item in enumerate(ordered_tasks):
         item[0] = f't{i}'  # TaskName (valid)
@@ -93,7 +106,13 @@ def save_params_to_json(params, params_save_as):
     #     print(f"File {params_save_as} already exists!")
 
 
-
+param_TaskSize = (10, 100 + 1)  # Mb
+param_CyclesPerBit = (100, 1000 + 1)  # per-MBit
+param_TransBitRate = (1, 5)  # Mbps
+param_DDL = (1,3)  # s
+param_Category = [0,1,2]
+param_min_cpu_freq = (100, 500 + 1)  # MHz
+param_max_cpu_freq = (500, 1000 + 1)  # MHz
 
 def main():
     """
@@ -102,17 +121,14 @@ def main():
 
     # 1. parameters
     header = ['TaskName', 'GenerationTime', 'TaskID', 'TaskSize', 'CyclesPerBit', 
-              'TransBitRate', 'DDL', 'SrcName']  # field names
+              'TransBitRate', 'DDL', 'SrcName', 'Category', 'Min_cpu_freq', 'Max_cpu_freq']  # field names
     
     '''
     [1] Fan W. Blockchain-Secured Task Offloading and Resource Allocation for Cloud-Edge-End Cooperative Networks[J]. IEEE Transactions on Mobile Computing, 2024, 23(8): 8092–8110.
     [1] Fan W, Zhao L, Liu X, Su Y, Li S, Wu F, Liu Y. Collaborative Service Placement, Task Scheduling, and Resource Allocation for Task Offloading with Edge-Cloud Cooperation[J]. IEEE Transactions on Mobile Computing, 2024, 23(1): 238–256.
     '''
-    param_TaskSize = (10, 100 + 1)  # Mb
-    param_CyclesPerBit = (100, 1000 + 1)  # per-MBit
-    param_TransBitRate = (1, 5)  # Mbps
-    param_DDL = (20, 100 + 1)  # s
-    # param_Latency = (0, 0.005)  # s
+
+
 
     # 2. scenarios
     scenarios = ['25N50E', '50N50E', '100N150E', 'MilanCityCenter']
@@ -162,7 +178,8 @@ def main():
                            'ingress_line': list(range(30))}
     }
 
-
+    random_seed = 985689
+    np.random.seed(random_seed)
     # 3. generate train data
     for flag, params in scenarios_dict_train.items():
         num_arrivals_per_ingress = params['num_arrivals_per_ingress']
@@ -173,7 +190,7 @@ def main():
         params_save_as = f"eval/benchmarks/Topo4MEC/data/{flag}/trainset_configs.json"
 
         # 3.1. synthetic tasks
-        tasks = generate_tasks(num_arrivals_per_ingress, lambda_, ingress_line, param_TaskSize, param_CyclesPerBit, param_TransBitRate, param_DDL)
+        tasks = generate_tasks(num_arrivals_per_ingress, lambda_, ingress_line)
 
         # 3.2. saving
         save_tasks_to_csv(tasks, save_as, header)
@@ -185,9 +202,14 @@ def main():
             'param_CyclesPerBit': param_CyclesPerBit,
             'param_TransBitRate': param_TransBitRate,
             'param_DDL': param_DDL,
+            'param_Category': param_Category,
+            'param_min_cpu_freq': param_min_cpu_freq,
+            'param_max_cpu_freq': param_max_cpu_freq,
         }
         save_params_to_json(params, params_save_as)
-
+    
+    random_seed = 985699
+    np.random.seed(random_seed)
     # 4. generate test date
     for flag, params in scenarios_dict_test.items():
         num_arrivals_per_ingress = params['num_arrivals_per_ingress']
@@ -201,7 +223,7 @@ def main():
         params_save_as = f"eval/benchmarks/Topo4MEC/data/{flag}/testset_configs.json"
         
         # 4.1. synthetic tasks
-        tasks = generate_tasks(num_arrivals_per_ingress, lambda_, ingress_line, param_TaskSize, param_CyclesPerBit, param_TransBitRate, param_DDL)
+        tasks = generate_tasks(num_arrivals_per_ingress, lambda_, ingress_line)
         
         # 4.2. saving
         save_tasks_to_csv(tasks, save_as, header)
@@ -213,6 +235,9 @@ def main():
             'param_CyclesPerBit': param_CyclesPerBit,
             'param_TransBitRate': param_TransBitRate,
             'param_DDL': param_DDL,
+            'param_Category': param_Category,
+            'param_min_cpu_freq': param_min_cpu_freq,
+            'param_max_cpu_freq': param_max_cpu_freq,
         }
         save_params_to_json(params, params_save_as)
     # 5. print

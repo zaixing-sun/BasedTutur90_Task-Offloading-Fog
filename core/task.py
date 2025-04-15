@@ -63,6 +63,10 @@ class Task:
         self.task_name = task_name
         self.exe_cnt = 0
 
+        self.category = None
+        self.min_cpu_freq = -1
+        self.max_cpu_freq = -1
+
     def __repr__(self) -> str:
         """Return a string representation of the task."""
         return f"[{self.__class__.__name__}] ({self.task_id})"
