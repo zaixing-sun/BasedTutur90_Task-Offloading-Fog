@@ -45,14 +45,17 @@ class Task:
         self.task_data = Data(task_size)
         self.trans_flow = DataFlow(trans_bit_rate)
 
-        self.trans_time = -1
+        self.trans_time = 0
         self.wait_time = -1
         self.exe_time = -1
+        self.start_time = -1
+        self.generated_time = -1
 
         self.exe_energy = -1  
-        self.trans_energy = -1
+        self.trans_energy = 0
 
         self.src_name = src_name
+        self.new_src_name = None
         self.dst = None
         self.dst_id = None
         self.dst_name = None
@@ -64,7 +67,11 @@ class Task:
         """Return a string representation of the task."""
         return f"[{self.__class__.__name__}] ({self.task_id})"
 
-    def allocate(self, now: int, node: Optional[Node] = None, pre_allocate: bool = False) -> None:
+    @property
+    def finished_time(self) -> float:
+        return self.exe_time + self.start_time
+
+    def allocate(self, now: float, node: Optional[Node] = None, pre_allocate: bool = False) -> None:
         """Allocate the task to a node based on the current time."""
 
         if pre_allocate:

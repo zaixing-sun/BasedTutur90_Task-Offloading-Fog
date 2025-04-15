@@ -19,8 +19,15 @@ ENERGY_UNIT_CONVERSION = 1
 def user_defined_info(task):
     """ Define additional information for completed tasks, such as checking if the deadline is violated."""
     total_time = task.wait_time + task.exe_time + task.trans_time
+    return {'ddl_ok': task.finished_time <= task.ddl + task.generated_time}
     return {'ddl_ok': total_time <= task.ddl}
 
+def check_task_successfully_finished(task):
+    """ Check if the task is successfully finished."""
+    if task.finished_time > task.ddl + task.generated_time:
+        return False
+    else:
+        return True
 
 class EnvLogger:
     """Logger for recording simulation events and key information."""
@@ -294,6 +301,7 @@ class Env:
         self.active_tasks[task.task_id] = task
         try:
             self.logger.log(f"Processing Task {{{task.task_id}}} in {{{task.dst_name}}}")
+            task.start_time = self.now
             yield self.controller.timeout(task.exe_time)
             self.done_task_collector.put(
                 (task.task_id,
@@ -360,8 +368,8 @@ class Env:
                         self.logger.append(info_type='task', 
                                            key=task.task_id, 
                                            value=(0, (task.src_name, task.dst_name),
-                                                    [task.trans_time, task.wait_time, task.exe_time], 
-                                                    [task.exe_energy, task.trans_energy])
+                                                    [task.generated_time, task.finished_time], 
+                                                    [task.trans_energy, task.exe_energy])
                                             )
                                            
                         
@@ -504,6 +512,9 @@ class Env_Zaixing:
         self.task_count = 0  # Counter for processed tasks
         self.total_task_count = 0  # 用于跟踪总任务数
 
+        self.global_buffer: list = []
+        self.policy = None
+
         # self.processed_tasks = []  # for debug
 
         # Reset environment state
@@ -518,6 +529,8 @@ class Env_Zaixing:
             for node in self.scenario.get_nodes().values()
         }
 
+        self.global_buffer_trigger = self.controller.event()  # 缓冲区更新事件
+        
         # # Start visualization frame recorder if enabled
         # if self.config['Basic']['VisFrame'] == "on":
         #     self._setup_visualization_directories()
@@ -565,12 +578,12 @@ class Env_Zaixing:
         self.active_tasks.clear()
         self.task_count = 0
         self.total_task_count = 0  # 用于跟踪总任务数
-
         # Reset scenario and logger
         self.scenario.reset()
         self.logger.reset()
         self.done_task_collector.items.clear()
         self.done_task_info.clear()
+        self.global_buffer.clear()
 
     def process(self, **kwargs):
         """Process a task using keyword arguments."""
@@ -611,13 +624,15 @@ class Env_Zaixing:
         Raises:
             EnvironmentError: If transmission fails due to network issues.
         """
+        src_name = task.src_name if task.new_src_name is None else task.new_src_name
+        
         try:
-            links_in_path = self.scenario.infrastructure.get_shortest_links(task.src_name, dst_name)
+            links_in_path = self.scenario.infrastructure.get_shortest_links(src_name, dst_name)
         except nx.exception.NetworkXNoPath:
             self.task_count += 1
             self.logger.append(info_type='task', 
                                key=task.task_id, 
-                               value=(1, (task.src_name, dst_name), ['NetworkXNoPathError'], [0, 0]))
+                               value=(1, (src_name, dst_name), ['NetworkXNoPathError'], [0, 0]))
             log_info = f"**NetworkXNoPathError: Task {{{task.task_id}}}** Node {{{dst_name}}} is inaccessible"
             self.logger.log(log_info)
             raise EnvironmentError(('NetworkXNoPathError', log_info, task.task_id))
@@ -627,7 +642,7 @@ class Env_Zaixing:
                 self.task_count += 1
                 self.logger.append(info_type='task', 
                                    key=task.task_id, 
-                                   value=(1, (task.src_name, dst_name), ['IsolatedWirelessNode'], [0, 0]))
+                                   value=(1, (src_name, dst_name), ['IsolatedWirelessNode'], [0, 0]))
                 log_info = f"**IsolatedWirelessNode: Task {{{task.task_id}}}** Isolated wireless node detected"
                 self.logger.log(log_info)
                 raise e
@@ -637,14 +652,14 @@ class Env_Zaixing:
                 self.task_count += 1
                 self.logger.append(info_type='task', 
                                    key=task.task_id, 
-                                   value=(1, (task.src_name, dst_name), ['NetCongestionError'], [0, 0]))
+                                   value=(1, (src_name, dst_name), ['NetCongestionError'], [0, 0]))
                 log_info = f"**NetCongestionError: Task {{{task.task_id}}}** " \
-                           f"network congestion Node {{{task.src_name}}} --> {{{dst_name}}}"
+                           f"network congestion Node {{{src_name}}} --> {{{dst_name}}}"
                 self.logger.log(log_info)
                 raise EnvironmentError(('NetCongestionError', log_info, task.task_id))
 
         task.trans_time = 0
-        task.trans_energy = 0
+        task.trans_energy += 0
 
         # Wireless transmission (first hop)
         if isinstance(links_in_path[0], Tuple):
@@ -673,7 +688,7 @@ class Env_Zaixing:
 
         self.scenario.send_data_flow(task.trans_flow, links_in_path)
         try:
-            self.logger.log(f"Task {{{task.task_id}}}: {{{task.src_name}}} --> {{{dst_name}}}")
+            self.logger.log(f"Task {{{task.task_id}}}: {{{src_name}}} --> {{{dst_name}}}")
             yield self.controller.timeout(task.trans_time)
             task.trans_flow.deallocate()
             self.trigger_monitor()  # 改为调用安全触发方法
@@ -701,15 +716,39 @@ class Env_Zaixing:
                 dst.append_task(task)
                 self.logger.log(f"Task {{{task.task_id}}} is buffered in Node {{{task.dst_name}}}")
                 return
+            # except EnvironmentError as e:
+            #     self.task_count += 1
+            #     self.logger.append(info_type='task', 
+            #                        key=task.task_id, 
+            #                        value=(1, (task.src_name, dst.name), ['InsufficientBufferError'], [task.trans_energy, 0]))
+            #     self.logger.log(e.args[0][1])
+            #     # raise e
+            #     return
             except EnvironmentError as e:
-                self.task_count += 1
-                self.logger.append(info_type='task', 
-                                   key=task.task_id, 
-                                   value=(1, (task.src_name, dst.name), ['InsufficientBufferError'], [task.trans_energy, 0]))
-                self.logger.log(e.args[0][1])
-                raise e
+                # 若buffer不足，进行以下修改
+                self.logger.log(f"Node {{{dst.name}}} buffer insufficient, attempting reallocation.")
+                # 【修改开始】
+                task.new_src_name = task.dst_name
+                # task.deallocate()
+                task.dst, task.dst_id, task.dst_name = None, None, None
+                alternative_nodes = self.policy.priority_list(self, task)  # 生成优先级节点列表
+                allocated = False
+                for alt_dst_id in alternative_nodes:
+                    alt_dst = self.scenario.get_node(self.scenario.node_id2name[alt_dst_id])
+                    if alt_dst.task_buffer.free_size >= task.task_size:
+                        # self.logger.log(f"Task {task.task_id} reallocating to Node {alt_dst.name}")
+                        self.controller.process(self._execute_task(task, alt_dst.name))
+                        allocated = True
+                        break
+                if not allocated:
+                    # 放入全局缓冲区，记录初始目标节点
+                    self.global_buffer.append((task, dst.name))
 
-        if flag_reactive:
+                    self.logger.log(f"Task {{{task.task_id}}} added to global buffer, original dst {{{dst.name}}}")
+                return
+                # 【修改结束】
+
+        if flag_reactive:  # 任务来自等待队列
 
             task.allocate(self.now)
             self.logger.log(f"Task {{{task.task_id}}} re-actives in Node {{{task.dst_name}}}, "
@@ -720,6 +759,7 @@ class Env_Zaixing:
         self.active_tasks[task.task_id] = task
         try:
             self.logger.log(f"Processing Task {{{task.task_id}}} in {{{task.dst_name}}}")
+            task.start_time = self.now
             yield self.controller.timeout(task.exe_time)
             self.done_task_collector.put(
                 (task.task_id,
@@ -746,14 +786,23 @@ class Env_Zaixing:
         dst = task.dst if flag_reactive else self.scenario.get_node(dst_name)
 
         if not flag_reactive:
-            self.logger.log(f"Task {{{task.task_id}}} generated in Node {{{task.src_name}}}")
-
-            if dst_name != task.src_name:
-                # Handle task transmission
-                yield from self._handle_task_transmission(task, dst_name)
+            if task.new_src_name is not None:
+                self.logger.log(f"Task {{{task.task_id}}} re-allocated from Node {{{task.new_src_name}}} to "
+                                f"Node {{{dst_name}}}")
+                if dst_name != task.new_src_name:
+                    # Handle task transmission
+                    yield from self._handle_task_transmission(task, dst_name)
+                else:
+                    task.trans_time = 0  # No transmission needed
+                    task.trans_energy = 0
             else:
-                task.trans_time = 0  # No transmission needed
-                task.trans_energy = 0
+                self.logger.log(f"Task {{{task.task_id}}} generated in Node {{{task.src_name}}}")
+                if dst_name != task.src_name:
+                    # Handle task transmission
+                    yield from self._handle_task_transmission(task, dst_name)
+                else:
+                    task.trans_time = 0  # No transmission needed
+                    task.trans_energy = 0
 
         # Execute the task on the node
         yield from self._execute_task_on_node(task, dst, flag_reactive)
@@ -791,12 +840,20 @@ class Env_Zaixing:
                                         f"execution time {{{task.exe_time:.{self.decimal_places}f}}}s")
 
                         # Record task statistics (success, times, node names)
-                        self.logger.append(info_type='task', 
-                                           key=task.task_id, 
-                                           value=(0, (task.src_name, task.dst_name),
-                                                    [task.trans_time, task.wait_time, task.exe_time], 
-                                                    [task.exe_energy, task.trans_energy])
-                                            )
+                        if check_task_successfully_finished(task):
+                            self.logger.append(info_type='task', 
+                                            key=task.task_id, 
+                                            value=(0, (task.src_name, task.dst_name),
+                                                        [task.generated_time, task.finished_time], 
+                                                        [task.trans_energy, task.exe_energy])
+                                                )
+                        else:
+                            self.logger.append(info_type='task', 
+                                            key=task.task_id, 
+                                            value=(1, (task.src_name, task.dst_name),
+                                                        [task.generated_time, task.finished_time], 
+                                                        [task.trans_energy, task.exe_energy])
+                                                )
                                            
                         
                         # Clean up: deallocate resources and remove from active tasks
@@ -808,6 +865,21 @@ class Env_Zaixing:
                         # Process the next waiting task if it exists
                         if waiting_task:
                             self.process(task=waiting_task)
+
+
+                        # 【修改开始】新增逻辑：尝试从 global buffer 中取出任务给此节点
+                        current_node = task.dst
+                        buffer_changed = True
+                        while buffer_changed and self.global_buffer:
+                            buffer_changed = False
+                            for buffered_task, original_dst_name in self.global_buffer:
+                                if buffered_task.task_size <= current_node.task_buffer.free_size:
+                                    self.logger.log(f"Task {buffered_task.task_id} from global buffer assigned to Node {current_node.name}")
+                                    self.global_buffer.remove((buffered_task, original_dst_name))
+                                    self.controller.process(self._execute_task(buffered_task, current_node.name))
+                                    buffer_changed = True
+                                    break  # 一次检查一个任务，直到节点buffer再次被占满
+                        # 【修改结束】
 
                     else:
                         # Handle invalid task flag with detailed error

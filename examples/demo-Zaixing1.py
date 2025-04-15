@@ -59,7 +59,7 @@ def task_submit_process(env, test_tasks, policy, done_event):
                     ddl=task_info[6],
                     src_name=task_info[7],
                     task_name=task_info[0])
-
+        task.generated_time = task_info[1]
         wait = generated_time - env.now
         if wait > 0:
             yield env.controller.timeout(wait)
@@ -81,7 +81,6 @@ def main():
     # Create the environment with the specified scenario and configuration files.
     scenario = Scenario(config_file=f"eval/benchmarks/Topo4MEC/data/{flag}/config.json", flag=flag)
     env = Env(scenario, config_file="core/configs/env_config_null.json")
-
     # Load the test dataset.
     data = pd.read_csv(f"eval/benchmarks/Topo4MEC/data/{flag}/testset.csv")
     test_tasks = list(data.iloc[:].values)
@@ -89,87 +88,19 @@ def main():
     # Init the policy.
     random.seed(8783578275289)
     np.random.seed(878357)
-    policy = DemoRandom()
+    # policy = DemoRandom()
     # policy = RoundRobinPolicy()
-    # policy = GreedyPolicy()
+    policy = GreedyPolicy()
+
+    # env.policy = DemoRandom()
+    # env.policy = RoundRobinPolicy()
+    env.policy = GreedyPolicy()
 
     # 启动任务提交进程
     env.controller.process(task_submit_process(env, test_tasks, policy, env.done_event))
     
     # 运行仿真直到所有任务完成
     env.controller.run(until=env.done_event)
-    
-
-    # Begin the simulation.
-    # until = 0
-    # launched_task_cnt = 0
-    # temp_time = 0
-    # while test_tasks!= []:
-    #     task, generated_time = new_task(test_tasks)
-    #     yield env.controller.timeout(generated_time)
-    #     dst_id = policy.act(env, task)  # offloading decision
-    #     dst_name = env.scenario.node_id2name[dst_id]
-    #     env.process(task=task, dst_name=dst_name)
-    #     launched_task_cnt += 1
-
-    # env.run()
-
-    # # flag = True  # True: reactive, False: proactive
-    # flag = False  # True: reactive, False: proactive
-    # for task_info in test_tasks:
-    #     # Task properties:
-    #     # ['TaskName', 'GenerationTime', 'TaskID', 'TaskSize', 'CyclesPerBit', 
-    #     #  'TransBitRate', 'DDL', 'SrcName', 'DstName']
-
-    #     task, generated_time = new_task(launched_task_cnt, test_tasks)
-
-
-    #     # generated_time = task_info[1]
-    #     # task = Task(task_id=task_info[2],
-    #     #             task_size=task_info[3],
-    #     #             cycles_per_bit=task_info[4],
-    #     #             trans_bit_rate=task_info[5],
-    #     #             ddl=task_info[6],
-    #     #             src_name=task_info[7],
-    #     #             task_name=task_info[0])
-        
-    #     if flag:
-    #         interval_time = generated_time - temp_time
-    #         yield env.controller.timeout(interval_time)
-    #         dst_id = policy.act(env, task)  # offloading decision
-    #         dst_name = env.scenario.node_id2name[dst_id]
-    #         env.process(task=task, dst_name=dst_name)
-    #         launched_task_cnt += 1
-    #         temp_time = generated_time
-
-    #     else:
-    #         while True:
-    #             # Catch completed task information.
-    #             while env.done_task_info:
-    #                 item = env.done_task_info.pop(0)
-
-    #             if env.now == generated_time:
-    #                 dst_id = policy.act(env, task)  # offloading decision
-    #                 dst_name = env.scenario.node_id2name[dst_id]
-    #                 env.process(task=task, dst_name=dst_name)
-    #                 launched_task_cnt += 1
-    #                 break
-
-    #             # Execute the simulation with error handler.
-    #             try:
-    #                 env.run(until=until)
-    #             except Exception as e:
-    #                 pass
-
-    #             until += 1
-
-    # # Continue the simulation until the last task successes/fails.
-    # while env.task_count < launched_task_cnt:
-    #     until += 1
-    #     try:
-    #         env.run(until=until)
-    #     except Exception as e:
-    #         pass
 
     # Evaluation
     print("\n===============================================")

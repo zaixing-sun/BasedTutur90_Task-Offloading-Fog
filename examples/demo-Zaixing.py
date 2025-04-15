@@ -39,9 +39,9 @@ def main():
 
     # Init the policy.
     random.seed(8783578275289)
-    policy = DemoRandom()
+    # policy = DemoRandom()
     # policy = RoundRobinPolicy()
-    # policy = GreedyPolicy()
+    policy = GreedyPolicy()
 
     # Begin the simulation.
     until = 1
@@ -58,7 +58,7 @@ def main():
                     ddl=task_info[6],
                     src_name=task_info[7],
                     task_name=task_info[0])
-
+        task.generated_time = task_info[1]
         while True:
             # Catch completed task information.
             while env.done_task_info:

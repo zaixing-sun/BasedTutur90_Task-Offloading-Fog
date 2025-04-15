@@ -45,8 +45,8 @@ class AvgLatency(object):
         for _, val in info.items():
             
             if val[statue_code_idx] == 0:
-                task_trans_time, task_wait_time, task_exe_time = val[time_list_idx][0], val[time_list_idx][1], val[time_list_idx][2]
-                latencies.append(task_wait_time + task_exe_time + task_trans_time)
+                generated_time, finished_time = val[time_list_idx][0], val[time_list_idx][1]
+                latencies.append(finished_time - generated_time)
   
         if len(latencies) == 0:
             return eps
@@ -68,7 +68,7 @@ class AvgEnergy(object):
         energy = []
         info = logger.task_info
 
-        energy_list_idx = logger.get_value_idx("time_list")
+        energy_list_idx = logger.get_value_idx("energy_list")
         
         for _, val in info.items():
 
