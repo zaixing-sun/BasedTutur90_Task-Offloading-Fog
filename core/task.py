@@ -95,7 +95,7 @@ class Task:
             # Estimated execution time based on task size and CPU frequency
             self.exe_time = (self.task_size * self.cycles_per_bit) / self.cpu_freq
             
-            self.exe_energy = self.exe_time * (self.dst.exe_energy_coef-self.dst.idle_energy_coef)
+            self.exe_energy = self.exe_time * (self.dst.exe_energy_coef-self.dst.idle_energy_coef) * self.cpu_freq / self.dst.max_cpu_freq
 
             
             
