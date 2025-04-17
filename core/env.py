@@ -885,7 +885,7 @@ class Env_Zaixing:
                         
 
                         # Log task completion with execution time
-                        self.logger.log(f"Task {{{task_id}}}: Accomplished in "
+                        self.logger.log(f"Task {{{task_id}}} - {{{check_task_successfully_finished(task)}}}: Accomplished in "
                                         f"Node {{{task.dst_name}}} with "
                                         f"execution time {{{task.exe_time:.{self.decimal_places}f}}}s")
 
